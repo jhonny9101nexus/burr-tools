@@ -35,32 +35,32 @@ namespace {
    * mainwindow.cpp, so Linux and Windows see exactly what they always have.
    */
   Fl_Menu_Item menu_Portable[] = {
-    { "&File",           0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"New",            0, cb_New_stub,         0, 0, 0, 0, 14, 56},
-      {"Load",    FL_F + 3, cb_Load_stub,        0, 0, 0, 0, 14, 56},
-      {"Import",         0, cb_Load_Ps3d_stub,   0, 0, 0, 0, 14, 56},
-      {"Save",    FL_F + 2, cb_Save_stub,        0, 0, 0, 0, 14, 56},
-      {"Save As",        0, cb_SaveAs_stub,      0, FL_MENU_DIVIDER, 0, 0, 14, 56},
-      {"Convert",        0, cb_Convert_stub,     0, 0, 0, 0, 14, 56},
-      {"Import Assms",   0, cb_AssembliesToShapes_stub,     0, 0, 0, 0, 14, 56},
-      {"Quit",           0, cb_Quit_stub,        0, 0, 3, 0, 14, 56},
-      { },
-    { "&Edit",           0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"Undo", FL_COMMAND+'z',           cb_Undo_stub, 0, 0, 0, 0, 14, 56},
-      {"Redo", FL_COMMAND+FL_SHIFT+'z', cb_Redo_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
-      { },
-    {"Toggle 3D", FL_F + 4, cb_Toggle3D_stub,    0, 0, 0, 0, 14, 56},
-    { "&Export",         0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"Images",             0, cb_ImageExport_stub, 0, 0, 0, 0, 14, 56},
-      {"Vector Image",       0, cb_ImageExportVector_stub, 0, 0, 0, 0, 14, 56},
-      {"STL",             0, cb_STLExport_stub, 0, 0, 0, 0, 14, 56},
-      { },
-    {"Status",           0, cb_StatusWindow_stub,  0, 0, 0, 0, 14, 56},
-    {"Edit Comment",     0, cb_Comment_stub,     0, 0, 0, 0, 14, 56},
-    {"Settings",         0, cb_Config_stub,      0, 0, 0, 0, 14, 56},
-    {"About",            0, cb_About_stub,       0, 0, 3, 0, 14, 56},
-    { }
-  };
+{ "&Archivo", 0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+{"Nuevo", 0, cb_New_stub, 0, 0, 0, 0, 14, 56},
+{"Abrir", FL_F + 3, cb_Load_stub, 0, 0, 0, 0, 14, 56},
+{"Importar", 0, cb_Load_Ps3d_stub, 0, 0, 0, 0, 14, 56},
+{"Guardar", FL_F + 2, cb_Save_stub, 0, 0, 0, 0, 14, 56},
+{"Guardar como", 0, cb_SaveAs_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
+{"Convertir", 0, cb_Convert_stub, 0, 0, 0, 0, 14, 56},
+{"Importar ensamblajes", 0, cb_AssembliesToShapes_stub, 0, 0, 0, 0, 14, 56},
+{"Salir", 0, cb_Quit_stub, 0, 0, 3, 0, 14, 56},
+{ },
+{ "&Edición", 0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+{"Deshacer", FL_COMMAND+'z', cb_Undo_stub, 0, 0, 0, 0, 14, 56},
+{"Rehacer", FL_COMMAND+FL_SHIFT+'z', cb_Redo_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
+{ },
+{"Alternar 3D", FL_F + 4, cb_Toggle3D_stub, 0, 0, 0, 0, 14, 56},
+{ "E&xportar", 0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+{"Imágenes", 0, cb_ImageExport_stub, 0, 0, 0, 0, 14, 56},
+{"Imagen vectorial", 0, cb_ImageExportVector_stub, 0, 0, 0, 0, 14, 56},
+{"STL", 0, cb_STLExport_stub, 0, 0, 0, 0, 14, 56},
+{ },
+{"Estado", 0, cb_StatusWindow_stub, 0, 0, 0, 0, 14, 56},
+{"Editar comentario", 0, cb_Comment_stub, 0, 0, 0, 0, 14, 56},
+{"Configuración", 0, cb_Config_stub, 0, 0, 0, 0, 14, 56},
+{"Acerca de", 0, cb_About_stub, 0, 0, 3, 0, 14, 56},
+{ }
+};
 
 #ifdef __APPLE__
 
