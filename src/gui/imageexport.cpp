@@ -217,7 +217,7 @@ bool imageExport_c::PreDraw(void) {
   switch(state) {
     case 0:
 
-      snprintf(statText, 50, "crear imagen de vista previa %u / %zu", im, images.size());
+      snprintf(statText, 50, "vista previa %u / %zu", im, images.size());
       status->label(statText);
 
       images[im]->preparePreviewImage();
@@ -228,7 +228,7 @@ bool imageExport_c::PreDraw(void) {
 
       if (!images[im]->imageStarted()) {
 
-        snprintf(statText, 50, "crear imagen %u / %zu", im, images.size());
+        snprintf(statText, 50, "imagen %u / %zu", im, images.size());
         status->label(statText);
 
         unsigned int w = (unsigned int)(imgHeight * images[im]->ratio() + 0.9);
@@ -257,7 +257,7 @@ void imageExport_c::nextImage(bool finish) {
 
   if (i) {
 
-    snprintf(statText, 20, "guardar página %u", curPage);
+    snprintf(statText, 20, "pág. %u", curPage);
     status->label(statText);
 
     char name[1000];

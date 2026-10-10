@@ -2140,7 +2140,7 @@ void mainWindow_c::StatProblemInfo(unsigned int prob) {
 
     if (cnt == cntMin) {
 
-      snprintf(txt, 100, "El resultado del problema P%u puede contener %u - %u vóxeles; las piezas (n = %u) contienen %u vóxeles", prob+1,
+      snprintf(txt, 100, "Resultado P%u: %u - %u vóxeles; piezas (n = %u): %u vóxeles", prob+1,
           getResultShape(*pr)->countState(voxel_c::VX_FILLED),
           getResultShape(*pr)->countState(voxel_c::VX_FILLED) +
           getResultShape(*pr)->countState(voxel_c::VX_VARIABLE),
@@ -2148,7 +2148,7 @@ void mainWindow_c::StatProblemInfo(unsigned int prob) {
 
     } else {
 
-      snprintf(txt, 100, "El resultado del problema P%u puede contener %u - %u vóxeles; las piezas (n = %u) contienen %u-%u vóxeles", prob+1,
+      snprintf(txt, 100, "Resultado P%u: %u - %u vóxeles; piezas (n = %u): %u-%u vóxeles", prob+1,
           getResultShape(*pr)->countState(voxel_c::VX_FILLED),
           getResultShape(*pr)->countState(voxel_c::VX_FILLED) +
           getResultShape(*pr)->countState(voxel_c::VX_VARIABLE),
@@ -2558,14 +2558,14 @@ const char * timeToString(float time) {
 
   static char tmp[50];
 
-  if (time < 60)                               snprintf(tmp, 50, "%i seconds",     int(time/(1                 )));
-  else if (time < 60*60)                       snprintf(tmp, 50, "%.1f minutes",   time/(60                    ));
-  else if (time < 60*60*24)                    snprintf(tmp, 50, "%.1f hours",     time/(60*60                 ));
-  else if (time < 60*60*24*30)                 snprintf(tmp, 50, "%.1f days",      time/(60*60*24              ));
-  else if (time < 60*60*24*365.2422)           snprintf(tmp, 50, "%.1f months",    time/(60*60*24*30           ));
-  else if (time < 60*60*24*365.2422*1000)      snprintf(tmp, 50, "%.1f years",     time/(60*60*24*365.2422     ));
-  else if (time < 60*60*24*365.2422*1000*1000) snprintf(tmp, 50, "%.1f millennia", time/(60*60*24*365.2422*1000));
-  else                                         snprintf(tmp, 50, "ages");
+  if (time < 60)                               snprintf(tmp, 50, "%i segundos",     int(time/(1                 )));
+  else if (time < 60*60)                       snprintf(tmp, 50, "%.1f minutos",   time/(60                    ));
+  else if (time < 60*60*24)                    snprintf(tmp, 50, "%.1f horas",     time/(60*60                 ));
+  else if (time < 60*60*24*30)                 snprintf(tmp, 50, "%.1f días",      time/(60*60*24              ));
+  else if (time < 60*60*24*365.2422)           snprintf(tmp, 50, "%.1f meses",    time/(60*60*24*30           ));
+  else if (time < 60*60*24*365.2422*1000)      snprintf(tmp, 50, "%.1f años",     time/(60*60*24*365.2422     ));
+  else if (time < 60*60*24*365.2422*1000*1000) snprintf(tmp, 50, "%.1f milenios", time/(60*60*24*365.2422*1000));
+  else                                         snprintf(tmp, 50, "eras");
 
   return tmp;
 }
@@ -3334,18 +3334,18 @@ void mainWindow_c::updateInterface(void) {
       case solveThread_c::ACT_PREPARATION:
         {
           char tmp[20];
-          snprintf(tmp, 20, "preparar pieza %u", assmThread->currentActionParameter()+1);
+          snprintf(tmp, 20, "preparar %u", assmThread->currentActionParameter()+1);
           OutputActivity->value(tmp);
         }
         break;
       case solveThread_c::ACT_REDUCE:
         if (pr->getAssembler()) {
           char tmp[20];
-          snprintf(tmp, 20, "optimizar pieza %u", pr->getAssembler()->getReducePiece()+1);
+          snprintf(tmp, 20, "optimizar %u", pr->getAssembler()->getReducePiece()+1);
           OutputActivity->value(tmp);
         } else {
           char tmp[20];
-          snprintf(tmp, 20, "optimizar pieza %u", assmThread->currentActionParameter()+1);
+          snprintf(tmp, 20, "optimizar %u", assmThread->currentActionParameter()+1);
           OutputActivity->value(tmp);
         }
         break;

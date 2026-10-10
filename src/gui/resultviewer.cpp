@@ -48,7 +48,7 @@ void ResultViewer_c::draw(void) {
     if (getResultShape(*puzzle)->getName().length())
       snprintf(txt, 120, "Resultado: S%u - %s", result+1, getResultShape(*puzzle)->getName().c_str());
     else
-      snprintf(txt, 19, "Resultado: S%u", result + 1);
+      snprintf(txt, 120, "Resultado: S%u", result + 1);
 
     // unsigned char r, g, b;
 
