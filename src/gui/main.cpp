@@ -117,8 +117,8 @@ int main(int argc, char ** argv) {
 
   catch (assert_exception& a) {
 
-    assertWindow_c * aw = new assertWindow_c("I'm sorry there is a bug in this program. It needs to be closed.\n"
-                                             "I try to save the current puzzle in '__rescue.xmpuzzle'\n",
+    assertWindow_c * aw = new assertWindow_c("Lo siento, hay un error en este programa. Es necesario cerrarlo.\n"
+                                             "Intento guardar el puzzle actual en '__rescue.xmpuzzle'\n",
                                              &a);
 
     aw->show();
@@ -140,7 +140,7 @@ int main(int argc, char ** argv) {
   }
 
   catch (...) {
-    printf(" exception\n");
+    printf("excepción\n");
   }
 
   g_ui = 0;

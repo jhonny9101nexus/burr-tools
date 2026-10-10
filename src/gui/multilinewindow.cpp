@@ -47,10 +47,10 @@ multiLineWindow_c::multiLineWindow_c(const char * tit, const char *lab, const ch
   inp->value(deflt);
 
   new FlatButton( (SZ_MLWIN_X/2)-SZ_BUTTON_X2-SZ_BUTTON_X2-2, SZ_MLWIN_Y-SZ_BUTTON-SZ_GAP, 2*SZ_BUTTON_X2, SZ_BUTTON,
-      "Finished", "Close and save changes", cb_mlWindowClose, this);
+      "Terminado", "Cerrar y guardar los cambios", cb_mlWindowClose, this);
 
   new FlatButton( (SZ_MLWIN_X/2)-SZ_BUTTON_X2+SZ_BUTTON_X2+3, SZ_MLWIN_Y-SZ_BUTTON-SZ_GAP, 2*SZ_BUTTON_X2, SZ_BUTTON,
-      "Abort", "Close and drop changes", cb_mlWindowAbort, this);
+      "Abortar", "Cerrar y descartar los cambios", cb_mlWindowAbort, this);
 
   resizable(inp);
 

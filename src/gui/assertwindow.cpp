@@ -44,24 +44,24 @@ assertWindow_c::assertWindow_c(const char * text, const assert_exception * a) : 
 
   // now some standard text
   (new Fl_Box(5, 10+ASSERT_TXT1, ASSERT_WINDOW_X-10, ASSERT_TXT2,
-             "Please send the text in the following box to roever@@users.sf.net\n"
-             "if possible include a file of the puzzle that failed and a description\n"
-             "of what you did until this error occurred,   thank you."
+             "Por favor, envía el texto del siguiente cuadro a roever@@users.sf.net\n"
+             "si es posible, incluye un archivo del puzzle que falló y una descripción\n"
+             "de lo que hiciste hasta que ocurrió este error,   gracias."
             ))->align(FL_ALIGN_CENTER | FL_ALIGN_INSIDE | FL_ALIGN_LEFT);
 
   // finally the text box
   int pos = snprintf(txt, 1000,
-                     "Assert failed in\n"
-                     "file: %s\n"
-                     "function: %s\n"
-                     "line: %u\n"
-                     "condition: %s\n",
+                     "Falló una aserción en\n"
+                     "archivo: %s\n"
+                     "función: %s\n"
+                     "línea: %u\n"
+                     "condición: %s\n",
                      a->file, a->function, a->line, a->expr);
 
   // append the log
   if (assert_log->lines()) {
 
-    pos += snprintf(txt+pos, 100000-pos, "log:\n");
+    pos += snprintf(txt+pos, 100000-pos, "registro:\n");
 
     for (unsigned int l = 0; l < assert_log->lines(); l++)
       pos += snprintf(txt+pos, 100000-pos, "%s\n", assert_log->line(l));
@@ -69,7 +69,7 @@ assertWindow_c::assertWindow_c(const char * text, const assert_exception * a) : 
 
   (new Fl_Multiline_Output(5, 15+ASSERT_TXT1+ASSERT_TXT2, ASSERT_WINDOW_X-10, ASSERT_WINDOW_Y - 25 - 20 - ASSERT_TXT1 - ASSERT_TXT2))->value(txt);
 
-  (new Fl_Button((ASSERT_WINDOW_X-ASSERT_BTN_X)/2, ASSERT_WINDOW_Y-25, ASSERT_BTN_X, 20, "Close"))->callback(cb_assertClose_stub, this);
+  (new Fl_Button((ASSERT_WINDOW_X-ASSERT_BTN_X)/2, ASSERT_WINDOW_Y-25, ASSERT_BTN_X, 20, "Cerrar"))->callback(cb_assertClose_stub, this);
 
   label("Error");
 }

@@ -71,10 +71,10 @@ class StatusProgress : public LFl_Double_Window {
 
     StatusProgress(void) : LFl_Double_Window(false) {
 
-      label("Progress");
+      label("Progreso");
 
-      (new LFl_Box("Calculating Status information.\n"
-                  "This might take some time...", 0, 0, 1, 1))->pitch(3);
+      (new LFl_Box("Calculando información de estado.\n"
+                  "Esto puede tardar un poco...", 0, 0, 1, 1))->pitch(3);
 
       p = new LFl_Progress(0, 1, 1, 1);
       p->minimum(0);
@@ -82,7 +82,7 @@ class StatusProgress : public LFl_Double_Window {
       p->selection_color((Fl_Color)4);
       p->pitch(3);
 
-      LFl_Button * btn = new LFl_Button("Cancel", 0, 2, 1, 1);
+      LFl_Button * btn = new LFl_Button("Cancelar", 0, 2, 1, 1);
       btn->pitch(3);
       btn->callback(cb_Close_stub, this);
 
@@ -165,7 +165,7 @@ statusWindow_c::statusWindow_c(puzzle_c * p) : LFl_Double_Window(true), puz(p), 
 
   char tmp[200];
 
-  label("Shape Information");
+  label("Información de la forma");
 
   unsigned int lines = p->getNumberOfShapes();
   unsigned int head = 3;
@@ -360,10 +360,10 @@ statusWindow_c::statusWindow_c(puzzle_c * p) : LFl_Double_Window(true), puz(p), 
 
   new LFl_Line(col++, 0, 1, lines+head, 2);
 
-  (new LFl_Box("Shape", col++, 0))->pitch(2);
+  (new LFl_Box("Forma", col++, 0))->pitch(2);
   new LFl_Line(col++, 0, 1, lines+head, 2);
 
-  (new LFl_Box("Units", col, 0, 5))->pitch(2);
+  (new LFl_Box("Unidades", col, 0, 5))->pitch(2);
   (new LFl_Box("Normal", col++, 1))->pitch(2);
   new LFl_Line(col++, 1, 1, lines+head-1, 1);
   (new LFl_Box("Variable", col++, 1))->pitch(2);
@@ -371,23 +371,23 @@ statusWindow_c::statusWindow_c(puzzle_c * p) : LFl_Double_Window(true), puz(p), 
   (new LFl_Box("Total", col++, 1))->pitch(2);
   new LFl_Line(col++, 0, 1, lines+head, 2);
 
-  (new LFl_Box("Identical", col, 0, 5))->pitch(2);
-  (new LFl_Box("Mirror", col++, 1))->pitch(2);
+  (new LFl_Box("Idéntica", col, 0, 5))->pitch(2);
+  (new LFl_Box("Espejo", col++, 1))->pitch(2);
   new LFl_Line(col++, 1, 1, lines+head-1, 1);
-  (new LFl_Box("Shape", col++, 1))->pitch(2);
+  (new LFl_Box("Forma", col++, 1))->pitch(2);
   new LFl_Line(col++, 1, 1, lines+head-1, 1);
-  (new LFl_Box("Complete", col++, 1))->pitch(2);
+  (new LFl_Box("Completa", col++, 1))->pitch(2);
   new LFl_Line(col++, 0, 1, lines+head, 2);
 
-  (new LFl_Box("Connectivity", col, 0, 5))->pitch(2);
-  (new LFl_Box("Face", col++, 1))->pitch(2);
+  (new LFl_Box("Conectividad", col, 0, 5))->pitch(2);
+  (new LFl_Box("Cara", col++, 1))->pitch(2);
   new LFl_Line(col++, 1, 1, lines+head-1, 1);
-  (new LFl_Box("Edge", col++, 1))->pitch(2);
+  (new LFl_Box("Arista", col++, 1))->pitch(2);
   new LFl_Line(col++, 1, 1, lines+head-1, 1);
-  (new LFl_Box("Corner", col++, 1))->pitch(2);
+  (new LFl_Box("Vértice", col++, 1))->pitch(2);
   new LFl_Line(col++, 0, 1, lines+head, 2);
 
-  (new LFl_Box("Holes", col, 0, 3))->pitch(2);
+  (new LFl_Box("Agujeros", col, 0, 3))->pitch(2);
   (new LFl_Box("2D", col++, 1))->pitch(2);
   new LFl_Line(col++, 1, 1, lines+head-1, 1);
   (new LFl_Box("3D", col++, 1))->pitch(2);
@@ -395,14 +395,14 @@ statusWindow_c::statusWindow_c(puzzle_c * p) : LFl_Double_Window(true), puz(p), 
 
   if (p->getGridType()->getType() == gridType_c::GT_BRICKS) {
 
-    (new LFl_Box("Tools", col, 0, 3))->pitch(2);
+    (new LFl_Box("Herramientas", col, 0, 3))->pitch(2);
     (new LFl_Box("Notch", col++, 1))->pitch(2);
     new LFl_Line(col++, 1, 1, lines+head-1, 1);
-    (new LFl_Box("Mill", col++, 1))->pitch(2);
+    (new LFl_Box("Fresa", col++, 1))->pitch(2);
     new LFl_Line(col++, 0, 1, lines+head, 2);
   }
 
-  (new LFl_Box("Sym", col++, 0, 1))->pitch(2);
+  (new LFl_Box("Sim", col++, 0, 1))->pitch(2);
 
   new LFl_Line(0, 2, cols, 1, 2);
 
@@ -413,35 +413,35 @@ statusWindow_c::statusWindow_c(puzzle_c * p) : LFl_Double_Window(true), puz(p), 
   fr = new layouter_c(0, 1, 1, 1);
   fr->pitch(7);
 
-  LFl_Button * btn = new LFl_Button("Close", 0, 1);
+  LFl_Button * btn = new LFl_Button("Cerrar", 0, 1);
   btn->callback(cb_Close_stub, this);
   btn->weight(1, 0);
 
   (new LFl_Box(1, 1))->setMinimumSize(5, 0);
 
-  btn = new LFl_Button("Select holes", 2, 1);
+  btn = new LFl_Button("Seleccionar agujeros", 2, 1);
   btn->callback(cb_SelectHoles_stub, this);
   btn->weight(1, 0);
 
   (new LFl_Box(3, 1))->setMinimumSize(5, 0);
 
-  btn = new LFl_Button("Remove selected", 4, 1);
+  btn = new LFl_Button("Quitar selección", 4, 1);
   btn->callback(cb_RemoveSelected_stub, this);
   btn->weight(1, 0);
 
-  btn = new LFl_Button("Select Identical Shapes", 0, 2);
+  btn = new LFl_Button("Seleccionar formas idénticas", 0, 2);
   btn->callback(cb_SelectIdenticalShapes_stub, this);
   btn->weight(1, 0);
 
   (new LFl_Box(1, 2))->setMinimumSize(5, 0);
 
-  btn = new LFl_Button("Select Identical Complete", 2, 2);
+  btn = new LFl_Button("Seleccionar idénticas completas", 2, 2);
   btn->callback(cb_SelectIdenticalComplete_stub, this);
   btn->weight(1, 0);
 
   (new LFl_Box(3, 2))->setMinimumSize(5, 0);
 
-  btn = new LFl_Button("Select Identical Mirror", 4, 2);
+  btn = new LFl_Button("Seleccionar idénticas en espejo", 4, 2);
   btn->callback(cb_SelectIdenticalMirror_stub, this);
   btn->weight(1, 0);
 

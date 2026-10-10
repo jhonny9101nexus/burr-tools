@@ -96,32 +96,32 @@ placementBrowser_c::placementBrowser_c(problem_c * p) :
   pieceSelector->range(0, puzzle->getNumberOfPieces()-1);
   pieceSelector->precision(0);
   pieceSelector->callback(cb_piece_stub, this);
-  pieceSelector->tooltip(" Select the piece whose placements you want to see ");
+  pieceSelector->tooltip("Selecciona la pieza cuyas colocaciones quieres ver");
   pieceSelector->setMinimumSize(0, 20);
   pieceSelector->clear_visible_focus();
 
   placementSelector = new LFl_Value_Slider(0, 1, 1, 1);
   placementSelector->precision(0);
   placementSelector->callback(cb_placement_stub, this);
-  placementSelector->tooltip(" Browse the placements ");
+  placementSelector->tooltip("Explorar las colocaciones");
   placementSelector->setMinimumSize(20, 0);
   placementSelector->clear_visible_focus();
 
-  LFl_Button * b = new LFl_Button("Close", 0, 2, 2, 1);
-  b->tooltip(" Close the window ");
+  LFl_Button * b = new LFl_Button("Cerrar", 0, 2, 2, 1);
+  b->tooltip("Cerrar la ventana");
   b->callback(cb_close_stub, this);
   b->pitch(5);
   b->clear_visible_focus();
 
-  label("Placement Browser");
+  label("Navegador de colocaciones");
 
   end();
 
   if ((puzzle->getAssembler()->getFinished() > 0) &&
       (puzzle->getAssembler()->getFinished() < 1))
-    fl_message("Attention: The assembler is neither in initial nor in final position\n"
-               "The displayed placements may not be what you expect\n"
-               "Read the documentation");
+    fl_message("Atención: el ensamblador no está ni en la posición inicial ni en la final\n"
+               "Las colocaciones mostradas pueden no ser lo que esperas\n"
+               "Lee la documentación");
 
   cb_piece();
 

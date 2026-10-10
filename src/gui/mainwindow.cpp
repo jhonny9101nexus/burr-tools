@@ -135,7 +135,7 @@ void mainWindow_c::cb_AddColor(void) {
   else
     puzzle->getColor(colorSelector->getSelection()-1, &r, &g, &b);
 
-  if (fl_color_chooser("New colour", r, g, b)) {
+  if (fl_color_chooser("Nuevo color", r, g, b)) {
     puzzle->addColor(r, g, b);
 
     // add this color as a default to the matrix, so that
@@ -155,7 +155,7 @@ static void cb_RemoveColor_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)-
 void mainWindow_c::cb_RemoveColor(void) {
 
   if (colorSelector->getSelection() == 0)
-    fl_message("Can not delete the Neutral colour, this colour has to be there");
+    fl_message("No se puede borrar el color Neutral, este color tiene que estar presente");
   else {
     changeColor(colorSelector->getSelection());
     puzzle->removeColor(colorSelector->getSelection());
@@ -178,11 +178,11 @@ static void cb_ChangeColor_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)-
 void mainWindow_c::cb_ChangeColor(void) {
 
   if (colorSelector->getSelection() == 0)
-    fl_message("Can not edit the Neutral colour");
+    fl_message("No se puede editar el color Neutral");
   else {
     unsigned char r, g, b;
     puzzle->getColor(colorSelector->getSelection()-1, &r, &g, &b);
-    if (fl_color_chooser("Change colour", r, g, b)) {
+    if (fl_color_chooser("Cambiar color", r, g, b)) {
       puzzle->changeColor(colorSelector->getSelection()-1, r, g, b);
       puzzleHistory->record(puzzle.get(), puzzleHistory_c::AK_COLOR_PALETTE, PcSel->getSelection());
       View3D->getView()->showColors(puzzle.get(), StatusLine->getColorMode());
@@ -233,7 +233,7 @@ void mainWindow_c::cb_DeleteShape(void) {
 
   } else
 
-    fl_message("No shape to delete selected!");
+    fl_message("¡No hay ninguna forma seleccionada para borrar!");
 
 }
 
@@ -252,7 +252,7 @@ void mainWindow_c::cb_CopyShape(void) {
 
   } else
 
-    fl_message("No shape to copy selected!");
+    fl_message("¡No hay ninguna forma seleccionada para copiar!");
 
 }
 
@@ -261,7 +261,7 @@ void mainWindow_c::cb_NameShape(void) {
 
   if (PcSel->getSelection() < puzzle->getNumberOfShapes()) {
 
-    const char * name = fl_input("Enter name for the shape", puzzle->getShape(PcSel->getSelection())->getName().c_str());
+    const char * name = fl_input("Escribe un nombre para la forma", puzzle->getShape(PcSel->getSelection())->getName().c_str());
 
     if (name) {
       puzzle->getShape(PcSel->getSelection())->setName(name);
@@ -580,7 +580,7 @@ void mainWindow_c::cb_RenameProblem(void) {
 
   if (problemSelector->getSelection() < puzzle->getNumberOfProblems()) {
 
-    const char * name = fl_input("Enter name for the problem",
+    const char * name = fl_input("Escribe un nombre para el problema",
         puzzle->getProblem(problemSelector->getSelection())->getName().c_str());
 
     if (name) {
@@ -665,7 +665,7 @@ static void cb_ShapeToResult_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v
 void mainWindow_c::cb_ShapeToResult(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -707,7 +707,7 @@ static void cb_AddShapeToProblem_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_
 void mainWindow_c::cb_AddShapeToProblem(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
   unsigned int shape = shapeAssignmentSelector->getSelection();
@@ -734,7 +734,7 @@ static void cb_AddAllShapesToProblem_stub(Fl_Widget* /*o*/, void* v) { ((mainWin
 void mainWindow_c::cb_AddAllShapesToProblem(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -765,7 +765,7 @@ static void cb_RemoveShapeFromProblem_stub(Fl_Widget* /*o*/, void* v) { ((mainWi
 void mainWindow_c::cb_RemoveShapeFromProblem(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -794,7 +794,7 @@ static void cb_SetShapeMinimumToZero_stub (Fl_Widget* /*o*/, void* v) { ((mainWi
 void mainWindow_c::cb_SetShapeMinimumToZero(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -823,7 +823,7 @@ static void cb_RemoveAllShapesFromProblem_stub(Fl_Widget* /*o*/, void* v) { ((ma
 void mainWindow_c::cb_RemoveAllShapesFromProblem(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -847,7 +847,7 @@ static void cb_SetAllRange_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)-
 void mainWindow_c::cb_SetAllRange(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -942,7 +942,7 @@ void mainWindow_c::cb_BtnPlacementBrowser(void) {
     return;
 
   if (!puzzle->getProblem(prob)->getAssembler()->getPiecePlacementSupported()) {
-    fl_message("Sorry, no placement browser for this type of puzzle");
+    fl_message("No hay navegador de colocaciones para este tipo de puzzle, lo siento");
     return;
   }
 
@@ -999,7 +999,7 @@ static void cb_AllowColor_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)->
 void mainWindow_c::cb_AllowColor(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -1021,7 +1021,7 @@ static void cb_DisallowColor_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v
 void mainWindow_c::cb_DisallowColor(void) {
 
   if (problemSelector->getSelection() >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
@@ -1079,23 +1079,23 @@ void mainWindow_c::cb_BtnCont(bool prep_only) {
   unsigned int prob = solutionProblem->getSelection();
 
   if (!(ggt->getGridType()->getCapabilities() & gridType_c::CAP_ASSEMBLE)) {
-    fl_message("Sorry, this space grid doesn't have an assembler (yet)!");
+    fl_message("Esta rejilla espacial aún no tiene ensamblador (todavía)!");
     return;
   }
 
   if (SolveDisasm->value() && !(ggt->getGridType()->getCapabilities() & gridType_c::CAP_DISASSEMBLE)) {
-    fl_message("Sorry, this space grid doesn't have a disassembler (yet)!\n"
-               "You must disable the disassembler first\n");
+    fl_message("Esta rejilla espacial aún no tiene desensamblador (todavía)!\n"
+               "Primero debes desactivar el desensamblador\n");
     return;
   }
 
   if (prob >= puzzle->getNumberOfProblems()) {
-    fl_message("First create a problem");
+    fl_message("Primero crea un problema");
     return;
   }
 
   if (!puzzle->getProblem(prob)->resultValid()) {
-    fl_message("A result shape must be defined");
+    fl_message("Se debe definir una forma de resultado");
     return;
   }
 
@@ -1122,7 +1122,7 @@ void mainWindow_c::cb_BtnCont(bool prep_only) {
   followAssembly = -1;
 
   if (!assmThread->start(prep_only)) {
-    fl_message("Could not start the solving process, the thread creation failed, sorry.");
+    fl_message("No se pudo iniciar el proceso de resolución: falló la creación del hilo, lo siento.");
     assmThread.reset();
 
   } else {
@@ -1368,7 +1368,7 @@ void mainWindow_c::cb_AddDisasm(void) {
     return;
 
   if (!(ggt->getGridType()->getCapabilities() & gridType_c::CAP_DISASSEMBLE)) {
-    fl_message("Sorry, this space grid doesn't have a disassembler (yet)!");
+    fl_message("Esta rejilla espacial aún no tiene desensamblador (todavía)!");
     return;
   }
 
@@ -1394,7 +1394,7 @@ void mainWindow_c::cb_AddAllDisasm(bool all) {
     return;
 
   if (!(ggt->getGridType()->getCapabilities() & gridType_c::CAP_DISASSEMBLE)) {
-    fl_message("Sorry, this space grid doesn't have a disassembler (yet)!");
+    fl_message("Esta rejilla espacial aún no tiene desensamblador (todavía)!");
     return;
   }
 
@@ -1407,14 +1407,14 @@ void mainWindow_c::cb_AddAllDisasm(bool all) {
   auto w = std::make_unique<Fl_Double_Window>(20, 20, 300, 30);
   Fl_Box * b = new Fl_Box(0, 0, 300, 30);
   w->end();
-  w->label("Disassembling...");
+  w->label("Desensamblando...");
   w->set_modal();
   char txt[100];
   w->show();
 
   for (unsigned int sol = 0; sol < pr->getNumberOfSavedSolutions(); sol++) {
 
-    snprintf(txt, 100, "solved %u of %u disassemblies\n", sol, pr->getNumberOfSavedSolutions());
+    snprintf(txt, 100, "resueltos %u de %u desensamblajes\n", sol, pr->getNumberOfSavedSolutions());
     b->label(txt);
 
     Fl::wait(0);
@@ -1651,7 +1651,7 @@ bool mainWindow_c::confirmDiscard(const char * action) {
 
   char msg[256];
   snprintf(msg, sizeof(msg),
-           "The puzzle has unsaved changes.\nSave before you %s?", action);
+           "El puzzle tiene cambios sin guardar.\n¿Guardar antes de %s?", action);
 
   /* fl_choice("%s", b0, b1, b2, msg) lays the buttons out right to left:
    * b0 right, b1 middle, b2 left. Fl_Message's constructor makes button 1
@@ -1661,12 +1661,12 @@ bool mainWindow_c::confirmDiscard(const char * action) {
    * always sets retval_ = 0 for both Escape and the window close button,
    * and plain fl_choice() (unlike fl_choice_n()) never looks at
    * window_closed(), so both report the same value as clicking b0.
-   * Putting "Cancel" at b0 means Escape/closing the dialog always cancels;
-   * putting "Save" at b1 makes Return trigger the non-destructive action;
-   * "Don't Save" -- the only destructive choice -- is b2, reachable only
+   * Putting "Cancelar" at b0 means Escape/closing the dialog always cancels;
+   * putting "Guardar" at b1 makes Return trigger the non-destructive action;
+   * "No guardar" -- the only destructive choice -- is b2, reachable only
    * by an explicit click.
    */
-  switch (fl_choice("%s", "Cancel", "Save", "Don't Save", msg)) {
+  switch (fl_choice("%s", "Cancelar", "Guardar", "No guardar", msg)) {
 
     case 1:             // Save (middle button, Fl_Return_Button / Return key)
       cb_Save();
@@ -1690,7 +1690,7 @@ void mainWindow_c::cb_New(void) {
 
   if (threadStopped()) {
 
-    if (!confirmDiscard("create a new puzzle"))
+    if (!confirmDiscard("crear un nuevo puzzle"))
       return;
 
     gridTypeSelectorWindow_c w;
@@ -1719,10 +1719,10 @@ void mainWindow_c::cb_Load(void) {
 
   if (threadStopped()) {
 
-    if (!confirmDiscard("open another puzzle"))
+    if (!confirmDiscard("abrir otro puzzle"))
       return;
 
-    const char * f = fileChooser("Load Puzzle", "Puzzle", "*.xmpuzzle", "", false);
+    const char * f = fileChooser("Cargar puzzle", "Puzzle", "*.xmpuzzle", "", false);
 
     tryToLoad(f);
   }
@@ -1733,10 +1733,10 @@ void mainWindow_c::cb_Load_Ps3d(void) {
 
   if (threadStopped()) {
 
-    if (!confirmDiscard("import another puzzle"))
+    if (!confirmDiscard("importar otro puzzle"))
       return;
 
-    const char * f = fileChooser("Import PuzzleSolver3D File", "PuzzleSolver3D", "*.puz", "", false);
+    const char * f = fileChooser("Importar archivo de PuzzleSolver3D", "PuzzleSolver3D", "*.puz", "", false);
 
     if (f) {
 
@@ -1744,7 +1744,7 @@ void mainWindow_c::cb_Load_Ps3d(void) {
 
       auto newPuzzle = loadPuzzlerSolver3D(&in);
       if (!newPuzzle) {
-        fl_alert("Could not load puzzle, sorry!");
+        fl_alert("No se pudo cargar el puzzle, lo siento!");
         return;
       }
 
@@ -1780,7 +1780,7 @@ void mainWindow_c::cb_Save(void) {
       }
 
       if (!ostr)
-        fl_alert("puzzle NOT saved!!");
+        fl_alert("puzzle NO guardado!!");
       else
         puzzleHistory->markSaved();
     }
@@ -1918,12 +1918,12 @@ void cb_SaveAs_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)->cb_SaveAs()
 void mainWindow_c::cb_SaveAs(void) {
 
   if (threadStopped()) {
-    const char * f = fileChooser("Save Puzzle As", "Puzzle", "*.xmpuzzle", "", true);
+    const char * f = fileChooser("Guardar puzzle como", "Puzzle", "*.xmpuzzle", "", true);
 
     if (f) {
 
       if (!fileExists(f) || fileChooserConfirmedOverwrite(f) ||
-          fl_choice("File exists; overwrite?", "Cancel", "Overwrite", 0)) {
+          fl_choice("¿El archivo ya existe; sobrescribir?", "Cancelar", "Sobrescribir", 0)) {
 
         std::string f2;
 
@@ -1947,7 +1947,7 @@ void mainWindow_c::cb_SaveAs(void) {
         }
 
         if (!ostr)
-          fl_alert("puzzle NOT saved!!!");
+          fl_alert("puzzle NO guardado!!!");
         else
           puzzleHistory->markSaved();
 
@@ -1957,7 +1957,7 @@ void mainWindow_c::cb_SaveAs(void) {
 
       } else {
 
-        fl_message("File not saved!\n");
+        fl_message("Archivo no guardado!\n");
       }
     }
   }
@@ -1979,7 +1979,7 @@ void mainWindow_c::cb_Config(void) {
 void cb_Comment_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)->cb_Coment(); }
 void mainWindow_c::cb_Coment(void) {
 
-  multiLineWindow_c win("Edit Comment", "Change the comment for the current puzzle", puzzle->getComment().c_str());
+  multiLineWindow_c win("Editar comentario", "Cambiar el comentario del puzzle actual", puzzle->getComment().c_str());
 
   win.show();
 
@@ -2080,18 +2080,18 @@ void mainWindow_c::cb_Toggle3D(void) {
 void cb_About_stub(Fl_Widget* /*o*/, void* v) { ((mainWindow_c*)v)->cb_About(); }
 void mainWindow_c::cb_About(void) {
 
-  fl_message("This is the GUI for BurrTools\n"
-             "BurrTools (c) 2003-2025 by Andreas Röver\n"
-	     "with patches from Arne Köhn, Bryan Turner, Derek Bosch, Michael Brown\n"
-             "The latest version is available at github.com/burr-tools/burr-tools\n"
+  fl_message("Esta es la interfaz gráfica de BurrTools\n"
+             "BurrTools (c) 2003-2025 por Andreas Röver\n"
+	     "con parches de Arne Köhn, Bryan Turner, Derek Bosch, Michael Brown\n"
+             "La versión más reciente está disponible en github.com/burr-tools/burr-tools\n"
              "\n"
-             "This software is distributed under the GPL\n"
-             "You should have received a copy of the GNU General Public License\n"
-             "along with this program (COPYING); if not, write to the Free Software\n"
+             "Este software se distribuye bajo la GPL\n"
+             "Deberías haber recibido una copia de la Licencia Pública General de GNU\n"
+             "junto con este programa (COPYING); si no la recibiste, escribe a la Free Software\n"
              "Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA\n"
-             "or see www.fsf.org\n"
+             "o visita www.fsf.org\n"
              "\n"
-             "The program uses\n"
+             "El programa usa\n"
              "- Fltk, libZ, libpng, gzstream, gl2ps\n"
              "- Fl_Table (http://3dsite.com/people/erco/Fl_Table/)\n"
              "- tr by Brian Paul (http://www.mesa3d.org/brianp/TR.html)\n"
@@ -2112,11 +2112,11 @@ void mainWindow_c::StatPieceInfo(unsigned int pc, bool withCoords, int x, int y,
 
     if (withCoords)
       snprintf(txt, sizeof(txt),
-               "Shape S%u has %u voxels (%u fixed, %u variable) (Coordinates X=%i, Y=%i, Z=%i)",
+               "La forma S%u tiene %u vóxeles (%u fijos, %u variables) (Coordenadas X=%i, Y=%i, Z=%i)",
                pc+1, fx+vr, fx, vr, x, y, z);
     else
       snprintf(txt, sizeof(txt),
-               "Shape S%u has %u voxels (%u fixed, %u variable)",
+               "La forma S%u tiene %u vóxeles (%u fijos, %u variables)",
                pc+1, fx+vr, fx, vr);
     StatusLine->setText(txt);
   }
@@ -2140,7 +2140,7 @@ void mainWindow_c::StatProblemInfo(unsigned int prob) {
 
     if (cnt == cntMin) {
 
-      snprintf(txt, 100, "Problem P%u result can contain %u - %u voxels, pieces (n = %u) contain %u voxels", prob+1,
+      snprintf(txt, 100, "El resultado del problema P%u puede contener %u - %u vóxeles; las piezas (n = %u) contienen %u vóxeles", prob+1,
           getResultShape(*pr)->countState(voxel_c::VX_FILLED),
           getResultShape(*pr)->countState(voxel_c::VX_FILLED) +
           getResultShape(*pr)->countState(voxel_c::VX_VARIABLE),
@@ -2148,7 +2148,7 @@ void mainWindow_c::StatProblemInfo(unsigned int prob) {
 
     } else {
 
-      snprintf(txt, 100, "Problem P%u result can contain %u - %u voxels, pieces (n = %u) contain %u-%u voxels", prob+1,
+      snprintf(txt, 100, "El resultado del problema P%u puede contener %u - %u vóxeles; las piezas (n = %u) contienen %u-%u vóxeles", prob+1,
           getResultShape(*pr)->countState(voxel_c::VX_FILLED),
           getResultShape(*pr)->countState(voxel_c::VX_FILLED) +
           getResultShape(*pr)->countState(voxel_c::VX_VARIABLE),
@@ -2186,7 +2186,7 @@ bool mainWindow_c::threadStopped(void) {
 
   if (assmThread) {
 
-    fl_message("Stop solving process first!");
+    fl_message("Primero detén el proceso de resolución!");
     return false;
   }
 
@@ -2217,7 +2217,7 @@ bool mainWindow_c::tryToLoad(const char * f, bool * reportedError) {
 
   catch (xmlParserException_c &e)
   {
-    fl_message("%s",(std::string("load error: ") + e.what()).c_str());
+    fl_message("%s",(std::string("error de carga:") + e.what()).c_str());
     if (reportedError) *reportedError = true;
     return false;
   }
@@ -2247,7 +2247,7 @@ bool mainWindow_c::tryToLoad(const char * f, bool * reportedError) {
   }
 
   if (containsStarted)
-    fl_message("This puzzle file contains started but not finished search for solutions.");
+    fl_message("Este archivo de puzzle contiene una búsqueda de soluciones iniciada pero no terminada.");
 
   if (puzzle->getCommentPopup())
     fl_message("%s",puzzle->getComment().c_str());
@@ -2281,7 +2281,7 @@ void mainWindow_c::openFromSystem(const char * filename) {
   if (!threadStopped())
     return;
 
-  if (!confirmDiscard("open that puzzle"))
+  if (!confirmDiscard("abrir ese puzzle"))
     return;
 
   /* Only speak up for the failures tryToLoad() keeps to itself. A parse
@@ -2292,7 +2292,7 @@ void mainWindow_c::openFromSystem(const char * filename) {
   bool reportedError = false;
 
   if (!tryToLoad(filename, &reportedError) && !reportedError)
-    fl_message("Could not open %s", filename);
+    fl_message("No se pudo abrir %s", filename);
 }
 
 void mainWindow_c::ReplacePuzzle(std::unique_ptr<puzzle_c> NewPuzzle) {
@@ -3334,18 +3334,18 @@ void mainWindow_c::updateInterface(void) {
       case solveThread_c::ACT_PREPARATION:
         {
           char tmp[20];
-          snprintf(tmp, 20, "prepare piece %u", assmThread->currentActionParameter()+1);
+          snprintf(tmp, 20, "preparar pieza %u", assmThread->currentActionParameter()+1);
           OutputActivity->value(tmp);
         }
         break;
       case solveThread_c::ACT_REDUCE:
         if (pr->getAssembler()) {
           char tmp[20];
-          snprintf(tmp, 20, "optimize piece %u", pr->getAssembler()->getReducePiece()+1);
+          snprintf(tmp, 20, "optimizar pieza %u", pr->getAssembler()->getReducePiece()+1);
           OutputActivity->value(tmp);
         } else {
           char tmp[20];
-          snprintf(tmp, 20, "optimize piece %u", assmThread->currentActionParameter()+1);
+          snprintf(tmp, 20, "optimizar pieza %u", assmThread->currentActionParameter()+1);
           OutputActivity->value(tmp);
         }
         break;
@@ -3362,7 +3362,7 @@ void mainWindow_c::updateInterface(void) {
         OutputActivity->value("finished");
         break;
       case solveThread_c::ACT_WAIT_TO_STOP:
-        OutputActivity->value("please wait");
+        OutputActivity->value("espera por favor");
         break;
       case solveThread_c::ACT_ERROR:
         OutputActivity->value("error");
@@ -3484,8 +3484,8 @@ void mainWindow_c::update(void) {
     // check if the thread has thrown an exception. if so, re-throw it
     if (assmThread->currentAction() == solveThread_c::ACT_ASSERT) {
 
-      auto aw = std::make_unique<assertWindow_c>("Because of an internal error the current puzzle\n"
-                                               "can not be solved\n",
+      auto aw = std::make_unique<assertWindow_c>("Debido a un error interno, el puzzle actual\n"
+                                               "no se puede resolver\n",
                                                &(assmThread->getAssertException()));
 
       aw->show();
@@ -3511,30 +3511,30 @@ void mainWindow_c::update(void) {
 
       switch(assmThread->getErrorState()) {
       case assembler_c::ERR_TOO_MANY_UNITS:
-        fl_message("Pieces contain %i units too many", assmThread->getErrorParam());
+        fl_message("Las piezas contienen %i unidades de más", assmThread->getErrorParam());
         break;
       case assembler_c::ERR_TOO_FEW_UNITS:
-        fl_message("Pieces contain %i units less than required\n"
-                   "See user guide sections\n"
+        fl_message("Las piezas contienen %i unidades menos de las necesarias\n"
+                   "Consulta las secciones de la guía de usuario\n"
                    "1.3.2.1 'Voxel States'\n"
                    "3.4.2 'Basic Drawing Tools' and\n"
                    "3.8 'Miscellaneous Editing Tools'", assmThread->getErrorParam());
         break;
       case assembler_c::ERR_CAN_NOT_PLACE:
-        fl_message("Piece %i can be placed nowhere within the result", assmThread->getErrorParam()+1);
+        fl_message("La pieza %i no cabe en ninguna parte del resultado", assmThread->getErrorParam()+1);
         selectShape = assmThread->getErrorParam();
         break;
       case assembler_c::ERR_CAN_NOT_RESTORE_VERSION:
-        fl_message("Impossible to restore the saved state because the internal format changed.\n"
-                   "You either have to start from the beginning or finish with the old version of BurrTools, sorry");
+        fl_message("No es posible restaurar el estado guardado porque el formato interno cambió.\n"
+                   "Tienes que empezar desde cero o terminar con la versión anterior de BurrTools, lo siento");
         break;
       case assembler_c::ERR_CAN_NOT_RESTORE_SYNTAX:
-        fl_message("Impossible to restore the saved state because something with the data is wrong.\n"
-                   "You have to start from the beginning, sorry");
+        fl_message("No es posible restaurar el estado guardado porque algo en los datos está mal.\n"
+                   "Tienes que empezar desde cero, lo siento");
         break;
       case assembler_c::ERR_PUZZLE_UNHANDABLE:
-        fl_message("Something went wrong the program can not solve your puzzle definitions.\n"
-                   "You should send the puzzle file to the programmer!");
+        fl_message("Algo salió mal: el programa no puede resolver las definiciones de tu puzzle.\n"
+                   "Deberías enviarle el archivo del puzzle al programador!");
         break;
       default:
         break;
@@ -3705,8 +3705,8 @@ int mainWindow_c::handle(int event) {
 void mainWindow_c::CreateShapeTab(void) {
 
   TabPieces = new layouter_c();
-  TabPieces->label("Entities");
-  TabPieces->tooltip("Edit shapes");
+  TabPieces->label("Entidades");
+  TabPieces->tooltip("Editar formas");
   TabPieces->clear_visible_focus();
 
   LFl_Tile * tile = new LFl_Tile(0, 0, 1, 1);
@@ -3716,29 +3716,29 @@ void mainWindow_c::CreateShapeTab(void) {
     layouter_c * group = new layouter_c(0, 0);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Shapes", false);
+    new LSeparator_c(0, 0, 1, 1, "Formas", false);
 
     layouter_c * o = new layouter_c(0, 1);
 
-    BtnNewShape =   new LFlatButton_c(0, 0, 1, 1, "New", " Add another piece ", cb_NewShape_stub, this);
+    BtnNewShape =   new LFlatButton_c(0, 0, 1, 1, "Nuevo", "Añadir otra pieza", cb_NewShape_stub, this);
     static_cast<LFlatButton_c*>(BtnNewShape)->weight(1, 0);
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelShape =   new LFlatButton_c(2, 0, 1, 1, "Delete", " Delete selected piece ", cb_DeleteShape_stub, this);
+    BtnDelShape =   new LFlatButton_c(2, 0, 1, 1, "Borrar", "Borrar la pieza seleccionada", cb_DeleteShape_stub, this);
     static_cast<LFlatButton_c*>(BtnDelShape)->weight(1, 0);
     (new LFl_Box(3, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnCpyShape =   new LFlatButton_c(4, 0, 1, 1, "Copy", " Copy selected piece ", cb_CopyShape_stub, this);
+    BtnCpyShape =   new LFlatButton_c(4, 0, 1, 1, "Copiar", "Copiar la pieza seleccionada", cb_CopyShape_stub, this);
     static_cast<LFlatButton_c*>(BtnCpyShape)->weight(1, 0);
     (new LFl_Box(5, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnRenShape =   new LFlatButton_c(6, 0, 1, 1, "Label", " Give the selected shape a name ", cb_NameShape_stub, this);
+    BtnRenShape =   new LFlatButton_c(6, 0, 1, 1, "Rótulo", "Dale un nombre a la forma seleccionada", cb_NameShape_stub, this);
     static_cast<LFlatButton_c*>(BtnRenShape)->weight(1, 0);
     (new LFl_Box(7, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnWeightInc =  new LFlatButton_c(8, 0, 1, 1, "W+", " Increase Weight of the selected shape ",cb_WeightInc_stub, this);
+    BtnWeightInc =  new LFlatButton_c(8, 0, 1, 1, "W+", "Aumentar el peso de la forma seleccionada",cb_WeightInc_stub, this);
     (new LFl_Box(9, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnWeightDec =  new LFlatButton_c(10, 0, 1, 1, "W-", " Decrease Weight of the selected shape ",cb_WeightDec_stub, this);
+    BtnWeightDec =  new LFlatButton_c(10, 0, 1, 1, "W-", "Disminuir el peso de la forma seleccionada",cb_WeightDec_stub, this);
     (new LFl_Box(11, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnShapeLeft =  new LFlatButton_c(12, 0, 1, 1, "@-14->", " Exchange current shape with previous shape ", cb_ShapeLeft_stub, this);
+    BtnShapeLeft =  new LFlatButton_c(12, 0, 1, 1, "@-14->", "Intercambiar la forma actual con la anterior", cb_ShapeLeft_stub, this);
     (new LFl_Box(13, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnShapeRight = new LFlatButton_c(14, 0, 1, 1, "@-16->", " Exchange current shape with next shape ", cb_ShapeRight_stub, this);
+    BtnShapeRight = new LFlatButton_c(14, 0, 1, 1, "@-16->", "Intercambiar la forma actual con la siguiente", cb_ShapeRight_stub, this);
 
     o->end();
 
@@ -3747,7 +3747,7 @@ void mainWindow_c::CreateShapeTab(void) {
     PcSel = new PieceSelector(0, 0, 200, 200, puzzle.get());
     LBlockListGroup_c * selGroup = new LBlockListGroup_c(0, 3, 1, 1, PcSel);
     selGroup->callback(cb_PcSel_stub, this);
-    selGroup->tooltip(" Select the shape that you want to edit ");
+    selGroup->tooltip("Selecciona la forma que quieres editar");
     selGroup->weight(1, 1);
 
     group->end();
@@ -3757,7 +3757,7 @@ void mainWindow_c::CreateShapeTab(void) {
     layouter_c * group = new layouter_c(0, 1);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Edit", true);
+    new LSeparator_c(0, 0, 1, 1, "Editar", true);
 
     pieceTools = new ToolTabContainer(0, 1, 1, 1, ggt.get());
     pieceTools->callback(cb_TransformPiece_stub, this);
@@ -3772,19 +3772,19 @@ void mainWindow_c::CreateShapeTab(void) {
     Fl_Button * b;
     b = editChoice->addButton();
     b->image(pm.get(TB_Color_Pen_Fixed_xpm));
-    b->tooltip(" Add normal voxels to the shape F5 ");
+    b->tooltip("Añadir vóxeles normales a la forma F5");
 
     b = editChoice->addButton();
     b->image(pm.get(TB_Color_Pen_Variable_xpm));
-    b->tooltip(" Add variable voxels to the shape F6 ");
+    b->tooltip("Añadir vóxeles variables a la forma F6");
 
     b = editChoice->addButton();
     b->image(pm.get(TB_Color_Eraser_xpm));
-    b->tooltip(" Remove voxels from the shape F7 ");
+    b->tooltip("Quitar vóxeles de la forma F7");
 
     b = editChoice->addButton();
     b->image(pm.get(TB_Color_Brush_xpm));
-    b->tooltip(" Change the constrain colour of voxels in the shape F8 ");
+    b->tooltip("Cambiar el color de restricción de los vóxeles de la forma F8");
 
     editChoice->callback(cb_EditChoice_stub, this);
 
@@ -3794,11 +3794,11 @@ void mainWindow_c::CreateShapeTab(void) {
 
     b = editMode->addButton();
     b->image(pm.get(TB_Color_Mouse_Rubber_Band_xpm));
-    b->tooltip(" Make changes by dragging rectangular areas in the grid editor ");
+    b->tooltip("Hacer cambios arrastrando áreas rectangulares en el editor de rejilla");
 
     b = editMode->addButton();
     b->image(pm.get(TB_Color_Mouse_Drag_xpm));
-    b->tooltip(" Make changes by painting in the grid editor ");
+    b->tooltip("Hacer cambios pintando en el editor de rejilla");
 
     editMode->callback(cb_EditMode_stub, this);
 
@@ -3808,29 +3808,29 @@ void mainWindow_c::CreateShapeTab(void) {
 
     btn = new LToggleButton_c(4, 0, 1, 1, cb_EditSym_stub, this, gridEditor_c::TOOL_MIRROR_X);
     btn->image(pm.get(TB_Color_Symmetrical_X_xpm));
-    btn->tooltip(" Toggle mirroring along the y-z-plane ");
+    btn->tooltip("Alternar el espejo en el plano Y-Z");
 
     btn = new LToggleButton_c(5, 0, 1, 1, cb_EditSym_stub, this, gridEditor_c::TOOL_MIRROR_Y);
     btn->image(pm.get(TB_Color_Symmetrical_Y_xpm));
-    btn->tooltip(" Toggle mirroring along the x-z-plane ");
+    btn->tooltip("Alternar el espejo en el plano X-Z");
 
     btn = new LToggleButton_c(6, 0, 1, 1, cb_EditSym_stub, this, gridEditor_c::TOOL_MIRROR_Z);
     btn->image(pm.get(TB_Color_Symmetrical_Z_xpm));
-    btn->tooltip(" Toggle mirroring along the x-y-plane ");
+    btn->tooltip("Alternar el espejo en el plano X-Y");
 
     (new LFl_Box(7, 0, 1, 1))->setMinimumSize(5, 0);
 
     btn = new LToggleButton_c(8, 0, 1, 1, cb_EditSym_stub, this, gridEditor_c::TOOL_STACK_X);
     btn->image(pm.get(TB_Color_Columns_X_xpm));
-    btn->tooltip(" Toggle drawing in all x layers ");
+    btn->tooltip("Alternar el dibujo en todas las capas X");
 
     btn = new LToggleButton_c(9, 0, 1, 1, cb_EditSym_stub, this, gridEditor_c::TOOL_STACK_Y);
     btn->image(pm.get(TB_Color_Columns_Y_xpm));
-    btn->tooltip(" Toggle drawing in all y layers ");
+    btn->tooltip("Alternar el dibujo en todas las capas Y");
 
     btn = new LToggleButton_c(10, 0, 1, 1, cb_EditSym_stub, this, gridEditor_c::TOOL_STACK_Z);
     btn->image(pm.get(TB_Color_Columns_Z_xpm));
-    btn->tooltip(" Toggle drawing in all z layers ");
+    btn->tooltip("Alternar el dibujo en todas las capas Z");
 
     (new LFl_Box(11, 0, 1, 1))->weight(1, 0);
 
@@ -3851,17 +3851,17 @@ void mainWindow_c::CreateShapeTab(void) {
     layouter_c * group = new layouter_c(0, 2);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Colours", true);
+    new LSeparator_c(0, 0, 1, 1, "Colores", true);
 
     layouter_c * o = new layouter_c(0, 1);
 
-    BtnNewColor = new LFlatButton_c(0, 0, 1, 1, "Add", " Add another colour ", cb_AddColor_stub, this);
+    BtnNewColor = new LFlatButton_c(0, 0, 1, 1, "Añadir", "Añadir otro color", cb_AddColor_stub, this);
     static_cast<LFlatButton_c*>(BtnNewColor)->weight(1, 0);
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelColor = new LFlatButton_c(2, 0, 1, 1, "Remove", " Remove selected colour ", cb_RemoveColor_stub, this);
+    BtnDelColor = new LFlatButton_c(2, 0, 1, 1, "Quitar", "Quitar el color seleccionado", cb_RemoveColor_stub, this);
     static_cast<LFlatButton_c*>(BtnDelColor)->weight(1, 0);
     (new LFl_Box(3, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnChnColor = new LFlatButton_c(4, 0, 1, 1, "Edit", " Change selected colour ", cb_ChangeColor_stub, this);
+    BtnChnColor = new LFlatButton_c(4, 0, 1, 1, "Editar", "Cambiar el color seleccionado", cb_ChangeColor_stub, this);
     static_cast<LFlatButton_c*>(BtnChnColor)->weight(1, 0);
 
     o->end();
@@ -3871,7 +3871,7 @@ void mainWindow_c::CreateShapeTab(void) {
     colorSelector = new ColorSelector(0, 0, 200, 200, puzzle.get(), true);
     LBlockListGroup_c * colGroup = new LBlockListGroup_c(0, 3, 1, 1, colorSelector);
     colGroup->callback(cb_ColSel_stub, this);
-    colGroup->tooltip(" Select colour to use for all editing operations ");
+    colGroup->tooltip("Selecciona el color para usar en todas las operaciones de edición");
     colGroup->weight(1, 1);
 
     group->end();
@@ -3889,7 +3889,7 @@ void mainWindow_c::CreateProblemTab(void) {
 
   TabProblems = new layouter_c();
   TabProblems->label("Puzzle");
-  TabProblems->tooltip("Edit problems");
+  TabProblems->tooltip("Editar problemas");
   TabProblems->hide();
   TabProblems->clear_visible_focus();
 
@@ -3900,26 +3900,26 @@ void mainWindow_c::CreateProblemTab(void) {
     layouter_c * group = new layouter_c(0, 0);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Problems", false);
+    new LSeparator_c(0, 0, 1, 1, "Problemas", false);
 
     layouter_c * o = new layouter_c(0, 1);
 
-    BtnNewProb = new LFlatButton_c(0, 0, 1, 1, "New", " Add another problem ", cb_NewProblem_stub, this);
+    BtnNewProb = new LFlatButton_c(0, 0, 1, 1, "Nuevo", "Añadir otro problema", cb_NewProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnNewProb)->weight(1, 0);
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelProb = new LFlatButton_c(2, 0, 1, 1, "Delete", " Delete selected problem ", cb_DeleteProblem_stub, this);
+    BtnDelProb = new LFlatButton_c(2, 0, 1, 1, "Borrar", "Borrar el problema seleccionado", cb_DeleteProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnDelProb)->weight(1, 0);
     (new LFl_Box(3, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnCpyProb = new LFlatButton_c(4, 0, 1, 1, "Copy", " Copy selected problem ", cb_CopyProblem_stub, this);
+    BtnCpyProb = new LFlatButton_c(4, 0, 1, 1, "Copiar", "Copiar el problema seleccionado", cb_CopyProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnCpyProb)->weight(1, 0);
     (new LFl_Box(5, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnRenProb = new LFlatButton_c(6, 0, 1, 1, "Label", " Rename selected problem ", cb_RenameProblem_stub, this);
+    BtnRenProb = new LFlatButton_c(6, 0, 1, 1, "Rótulo", "Renombrar el problema seleccionado", cb_RenameProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnRenProb)->weight(1, 0);
     (new LFl_Box(7, 0))->setMinimumSize(SZ_GAP, 0);
 
-    BtnProbLeft = new LFlatButton_c(8, 0, 1, 1, "@-14->", " Exchange current problem with previous problem ", cb_ProblemLeft_stub, this);
+    BtnProbLeft = new LFlatButton_c(8, 0, 1, 1, "@-14->", "Intercambiar el problema actual con el anterior", cb_ProblemLeft_stub, this);
     (new LFl_Box(9, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnProbRight = new LFlatButton_c(10, 0, 1, 1, "@-16->", " Exchange current problem with next problem ", cb_ProblemRight_stub, this);
+    BtnProbRight = new LFlatButton_c(10, 0, 1, 1, "@-16->", "Intercambiar el problema actual con el siguiente", cb_ProblemRight_stub, this);
 
     o->end();
 
@@ -3928,7 +3928,7 @@ void mainWindow_c::CreateProblemTab(void) {
     problemSelector = new ProblemSelector(0, 0, 100, 100, puzzle.get());
     LBlockListGroup_c * probGroup = new LBlockListGroup_c(0, 3, 1, 1, problemSelector);
     probGroup->callback(cb_ProbSel_stub, this);
-    probGroup->tooltip(" Select problem to edit ");
+    probGroup->tooltip("Selecciona el problema a editar");
     probGroup->weight(1, 1);
 
     group->end();
@@ -3938,17 +3938,17 @@ void mainWindow_c::CreateProblemTab(void) {
     layouter_c * group = new layouter_c(0, 1);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Piece Assignment", true);
+    new LSeparator_c(0, 0, 1, 1, "Asignación de piezas", true);
 
     layouter_c * o = new layouter_c(0, 1);
 
     problemResult = new ResultViewer_c(0, 0, 1, 1);
-    problemResult->tooltip(" The result shape for the current problem ");
+    problemResult->tooltip("La forma de resultado del problema actual");
     problemResult->weight(1, 0);
 
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
 
-    BtnSetResult = new LFlatButton_c(2, 0, 1, 1, "Set Result", " Set selected shape as result ", cb_ShapeToResult_stub, this);
+    BtnSetResult = new LFlatButton_c(2, 0, 1, 1, "Definir resultado", "Definir la forma seleccionada como resultado", cb_ShapeToResult_stub, this);
 
     o->end();
 
@@ -3957,7 +3957,7 @@ void mainWindow_c::CreateProblemTab(void) {
     shapeAssignmentSelector = new PieceSelector(0, 0, 100, 100, puzzle.get());
     LBlockListGroup_c * shapeGroup = new LBlockListGroup_c(0, 3, 1, 1, shapeAssignmentSelector);
     shapeGroup->callback(cb_ShapeSel_stub, this);
-    shapeGroup->tooltip(" Select a shape to set as result or to add or remove from problem ");
+    shapeGroup->tooltip("Selecciona una forma para definirla como resultado o añadirla/quitarla del problema");
     shapeGroup->weight(1, 1);
 
     group->end();
@@ -3973,30 +3973,30 @@ void mainWindow_c::CreateProblemTab(void) {
 
     int xp = 0;
 
-    BtnAddShape = new LFlatButton_c(xp++, 0, 1, 1, "+1", " Add another one of the selected shape ", cb_AddShapeToProblem_stub, this);
+    BtnAddShape = new LFlatButton_c(xp++, 0, 1, 1, "+1", "Añadir otra de la forma seleccionada", cb_AddShapeToProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnAddShape)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnRemShape = new LFlatButton_c(xp++, 0, 1, 1, "-1", " Remove one of the selected shapes ", cb_RemoveShapeFromProblem_stub, this);
+    BtnRemShape = new LFlatButton_c(xp++, 0, 1, 1, "-1", "Quitar una de las formas seleccionadas", cb_RemoveShapeFromProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnRemShape)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnMinZero = new LFlatButton_c(xp++, 0, 1, 1, "min=0", " Set minimum number of pieces to 0 ", cb_SetShapeMinimumToZero_stub, this);
+    BtnMinZero = new LFlatButton_c(xp++, 0, 1, 1, "min=0", "Fijar en 0 el número mínimo de piezas", cb_SetShapeMinimumToZero_stub, this);
     static_cast<LFlatButton_c*>(BtnMinZero)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnAddAll = new LFlatButton_c(xp++, 0, 1, 1, "all+1", " Add one of all shapes except result ", cb_AddAllShapesToProblem_stub, this);
+    BtnAddAll = new LFlatButton_c(xp++, 0, 1, 1, "all+1", "Añadir una de todas las formas excepto el resultado", cb_AddAllShapesToProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnAddAll)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnRemAll = new LFlatButton_c(xp++, 0, 1, 1, "Clr", " Remove all pieces ", cb_RemoveAllShapesFromProblem_stub, this);
+    BtnRemAll = new LFlatButton_c(xp++, 0, 1, 1, "Clr", "Quitar todas las piezas", cb_RemoveAllShapesFromProblem_stub, this);
     static_cast<LFlatButton_c*>(BtnRemAll)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnSetAllRange = new LFlatButton_c(xp++, 0, 1, 1, "Set All", " Set min/max piece count for all shapes in the current problem ", cb_SetAllRange_stub, this);
+    BtnSetAllRange = new LFlatButton_c(xp++, 0, 1, 1, "Definir todo", "Definir el número mínimo/máximo de piezas para todas las formas del problema actual", cb_SetAllRange_stub, this);
     static_cast<LFlatButton_c*>(BtnSetAllRange)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnGroup =    new LFlatButton_c(xp++, 0, 1, 1, "Detail", " Edit details of the problem ", cb_ShapeGroup_stub, this);
+    BtnGroup =    new LFlatButton_c(xp++, 0, 1, 1, "Detalle", "Editar los detalles del problema", cb_ShapeGroup_stub, this);
     static_cast<LFlatButton_c*>(BtnGroup)->weight(1, 0);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnProbShapeLeft = new LFlatButton_c(xp++, 0, 1, 1, "@-14->", " Exchange current shape with previous shape ", cb_ProbShapeLeft_stub, this);
+    BtnProbShapeLeft = new LFlatButton_c(xp++, 0, 1, 1, "@-14->", "Intercambiar la forma actual con la anterior", cb_ProbShapeLeft_stub, this);
     (new LFl_Box(xp++, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnProbShapeRight = new LFlatButton_c(xp++, 0, 1, 1, "@-16->", " Exchange current shape with next shape ", cb_ProbShapeRight_stub, this);
+    BtnProbShapeRight = new LFlatButton_c(xp++, 0, 1, 1, "@-16->", "Intercambiar la forma actual con la siguiente", cb_ProbShapeRight_stub, this);
 
     o->end();
 
@@ -4005,7 +4005,7 @@ void mainWindow_c::CreateProblemTab(void) {
     PiecesCountList = new PiecesList(0, 0, 100, 100);
     LBlockListGroup_c * shapeGroup = new LBlockListGroup_c(0, 3, 1, 1, PiecesCountList);
     shapeGroup->callback(cb_PiecesClicked_stub, this);
-    shapeGroup->tooltip(" Show which shapes are used in the current problem and how often they are used, can be used to select shapes ");
+    shapeGroup->tooltip("Muestra qué formas se usan en el problema actual y cuántas veces, también sirve para seleccionar formas");
     shapeGroup->weight(1, 1);
 
     group->end();
@@ -4015,12 +4015,12 @@ void mainWindow_c::CreateProblemTab(void) {
     layouter_c * group = new layouter_c(0, 3);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Colour Assignment", true);
+    new LSeparator_c(0, 0, 1, 1, "Asignación de colores", true);
 
     colorAssignmentSelector = new ColorSelector(0, 0, 100, 100, puzzle.get(), false);
     LBlockListGroup_c * colGroup = new LBlockListGroup_c(0, 1, 1, 1, colorAssignmentSelector);
     colGroup->callback(cb_ColorAssSel_stub, this);
-    colGroup->tooltip(" Select colour to add or remove from constraints ");
+    colGroup->tooltip("Selecciona el color para añadir o quitar de las restricciones");
     colGroup->weight(1, 1);
 
     group->end();
@@ -4034,13 +4034,13 @@ void mainWindow_c::CreateProblemTab(void) {
 
     layouter_c * o = new layouter_c(0, 1);
 
-    BtnColSrtPc = new LFlatButton_c(0, 0, 1, 1, "Sort by Piece", " Sort colour constraints by piece ", cb_CCSortByPiece_stub, this);
+    BtnColSrtPc = new LFlatButton_c(0, 0, 1, 1, "Ordenar por pieza", "Ordenar las restricciones de color por pieza", cb_CCSortByPiece_stub, this);
     static_cast<LFlatButton_c*>(BtnColSrtPc)->weight(1, 0);
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnColAdd = new LFlatButton_c(2, 0, 1, 1, "@-12->", " Add colour to constraint ", cb_AllowColor_stub, this);
-    BtnColRem = new LFlatButton_c(3, 0, 1, 1, "@-18->", " Add colour to constraint ", cb_DisallowColor_stub, this);
+    BtnColAdd = new LFlatButton_c(2, 0, 1, 1, "@-12->", "Añadir color a la restricción", cb_AllowColor_stub, this);
+    BtnColRem = new LFlatButton_c(3, 0, 1, 1, "@-18->", "Añadir color a la restricción", cb_DisallowColor_stub, this);
     (new LFl_Box(4, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnColSrtRes = new LFlatButton_c(5, 0, 1, 1, "Sort by Result", " Sort Colour Constraints by Result ", cb_CCSortByResult_stub, this);
+    BtnColSrtRes = new LFlatButton_c(5, 0, 1, 1, "Ordenar por resultado", "Ordenar las restricciones de color por resultado", cb_CCSortByResult_stub, this);
     static_cast<LFlatButton_c*>(BtnColSrtRes)->weight(1, 0);
 
     o->end();
@@ -4050,7 +4050,7 @@ void mainWindow_c::CreateProblemTab(void) {
     colconstrList = new ColorConstraintsEdit(0, 0, 100, 100, puzzle.get());
     LConstraintsGroup_c * colGroup = new LConstraintsGroup_c(0, 3, 1, 1, colconstrList);
     colGroup->callback(cb_ColorConstrSel_stub, this);
-    colGroup->tooltip(" Colour constraints for the current problem ");
+    colGroup->tooltip("Restricciones de color del problema actual");
     colGroup->weight(1, 1);
 
     group->end();
@@ -4065,8 +4065,8 @@ void mainWindow_c::CreateProblemTab(void) {
 void mainWindow_c::CreateSolveTab(void) {
 
   TabSolve = new layouter_c();
-  TabSolve->label("Solver");
-  TabSolve->tooltip("Solve problems");
+  TabSolve->label("Resolución");
+  TabSolve->tooltip("Resolver problemas");
   TabSolve->hide();
   TabSolve->clear_visible_focus();
 
@@ -4077,53 +4077,53 @@ void mainWindow_c::CreateSolveTab(void) {
     layouter_c * group = new layouter_c(0, 0);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Parameters", false);
+    new LSeparator_c(0, 0, 1, 1, "Parámetros", false);
 
     solutionProblem = new ProblemSelector(0, 0, 100, 100, puzzle.get());
     LBlockListGroup_c * shapeGroup = new LBlockListGroup_c(0, 1, 1, 1, solutionProblem);
     shapeGroup->callback(cb_SolProbSel_stub, this);
-    shapeGroup->tooltip(" Select problem to solve ");
+    shapeGroup->tooltip("Selecciona el problema a resolver");
     shapeGroup->weight(1, 1);
 
     layouter_c * o = new layouter_c(0, 2);
 
-    SolveDisasm = new LFl_Check_Button("Disassemble", 0, 0, 1, 1);
-    SolveDisasm->tooltip(" Do also try to disassemble the assembled puzzles. Only puzzles that can be disassembled will be added to solutions ");
+    SolveDisasm = new LFl_Check_Button("Desensamblar", 0, 0, 1, 1);
+    SolveDisasm->tooltip("También intenta desensamblar los puzzles ensamblados. Solo los que se puedan desensamblar se añadirán a las soluciones");
     SolveDisasm->clear_visible_focus();
 
-    JustCount = new LFl_Check_Button("Just Count", 0, 1, 1, 1);
-    JustCount->tooltip(" Don\'t save the solutions, just count the number of them ");
+    JustCount = new LFl_Check_Button("Solo contar", 0, 1, 1, 1);
+    JustCount->tooltip("No guardes las soluciones, solo cuenta cuántas hay");
     JustCount->clear_visible_focus();
 
-    CompleteRotations = new LFl_Check_Button("Expnsv Rot Check", 0, 2, 1, 1);
-    CompleteRotations->tooltip(" Do expensive and thorough rotation check, eliminating translations and rotations not in symmetry of the result shape ");
+    CompleteRotations = new LFl_Check_Button("Chequeo Rot. Costoso", 0, 2, 1, 1);
+    CompleteRotations->tooltip("Hacer una verificación de rotación exhaustiva y costosa, eliminando traslaciones y rotaciones que no estén en la simetría de la forma de resultado");
     CompleteRotations->clear_visible_focus();
 
-    DropDisassemblies = new LFl_Check_Button("Drop Disassemblies", 1, 0, 1, 1);
-    DropDisassemblies->tooltip(" Don\'t save the Disassemblies, just the information about them ");
+    DropDisassemblies = new LFl_Check_Button("Descartar desensamblajes", 1, 0, 1, 1);
+    DropDisassemblies->tooltip("No guardes los desensamblajes, solo la información sobre ellos");
     DropDisassemblies->clear_visible_focus();
 
-    KeepMirrors = new LFl_Check_Button("Keep Mirror Solutions", 1, 1, 1, 1);
-    KeepMirrors->tooltip(" Don't remove solutions that are mirrors of another solution ");
+    KeepMirrors = new LFl_Check_Button("Mantener soluciones espejo", 1, 1, 1, 1);
+    KeepMirrors->tooltip("No quites las soluciones que sean espejo de otra solución");
     KeepMirrors->clear_visible_focus();
 
-    KeepRotations = new LFl_Check_Button("Keep Rotated Solutions", 1, 2, 1, 1);
-    KeepRotations->tooltip(" Don't remove solutions that are rotations of other solutions ");
+    KeepRotations = new LFl_Check_Button("Mantener soluciones rotadas", 1, 2, 1, 1);
+    KeepRotations->tooltip("No quites las soluciones que sean rotaciones de otras soluciones");
     KeepRotations->clear_visible_focus();
 
     o->end();
 
     o = new layouter_c(0, 3);
 
-    new LFl_Box("Sort by: ", 0, 0, 1, 1);
+    new LFl_Box("Ordenar por:", 0, 0, 1, 1);
 
     sortMethod = new LFl_Choice(1, 0, 1, 1);
     static_cast<LFl_Choice*>(sortMethod)->weight(1, 0);
 
     // be careful the order in here must correspond with the enumeration in assembler thread
-    sortMethod->add("Unsorted");
-    sortMethod->add("Moves for Complete Disassembly");
-    sortMethod->add("Level");
+    sortMethod->add("Sin ordenar");
+    sortMethod->add("Movimientos para el desensamblaje completo");
+    sortMethod->add("Nivel");
 
     sortMethod->value(1);
 
@@ -4133,8 +4133,8 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 5);
 
-    new LFl_Box("Drop ", 0, 0, 1, 1);
-    new LFl_Box("Limit ", 3, 0, 1, 1);
+    new LFl_Box("Descartar", 0, 0, 1, 1);
+    new LFl_Box("Límite", 3, 0, 1, 1);
     (new LFl_Box(2, 0))->setMinimumSize(SZ_GAP, 0);
 
     solDrop = new LFl_Value_Input(1, 0, 1, 1);
@@ -4157,18 +4157,18 @@ void mainWindow_c::CreateSolveTab(void) {
     o = new layouter_c(0, 7);
 
     if (expertMode) {
-      BtnPrepare = new LFlatButton_c(0, 0, 1, 1, "Prepare", " Do the preparation phase and then stop, this removes old results ", cb_BtnPrepare_stub, this);
+      BtnPrepare = new LFlatButton_c(0, 0, 1, 1, "Preparar", "Hacer la fase de preparación y luego detenerse; esto elimina los resultados anteriores", cb_BtnPrepare_stub, this);
       static_cast<LFlatButton_c*>(BtnPrepare)->weight(1, 0);
       (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
     } else
       BtnPrepare = 0;
-    BtnStart = new LFlatButton_c(2, 0, 1, 1, "Start", " Start new solving process, removing old result ", cb_BtnStart_stub, this);
+    BtnStart = new LFlatButton_c(2, 0, 1, 1, "Iniciar", "Iniciar un nuevo proceso de resolución, eliminando el resultado anterior", cb_BtnStart_stub, this);
     static_cast<LFlatButton_c*>(BtnStart)->weight(1, 0);
     (new LFl_Box(3, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnCont = new LFlatButton_c(4, 0, 1, 1, "Continue", " Continue started process ", cb_BtnCont_stub, this);
+    BtnCont = new LFlatButton_c(4, 0, 1, 1, "Continuar", "Continuar el proceso iniciado", cb_BtnCont_stub, this);
     static_cast<LFlatButton_c*>(BtnCont)->weight(1, 0);
     (new LFl_Box(5, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnStop = new LFlatButton_c(6, 0, 1, 1, "Stop", " Stop a currently running solution process ", cb_BtnStop_stub, this);
+    BtnStop = new LFlatButton_c(6, 0, 1, 1, "Detener", "Detener un proceso de resolución en marcha", cb_BtnStop_stub, this);
     static_cast<LFlatButton_c*>(BtnStop)->weight(1, 0);
 
     o->end();
@@ -4177,19 +4177,19 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 9);
 
-    BtnPlacement = new LFlatButton_c(0, 0, 1, 1, "Placements", " Browse the calculated placement of pieces ", cb_BtnPlacementBrowser_stub, this);
+    BtnPlacement = new LFlatButton_c(0, 0, 1, 1, "Colocaciones", "Explorar las colocaciones calculadas de las piezas", cb_BtnPlacementBrowser_stub, this);
     static_cast<LFlatButton_c*>(BtnPlacement)->weight(1, 0);
 
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
 
-    BtnMovement = new LFlatButton_c(2, 0, 1, 1, "Movements", " Browse the possible movements for an assembly ", cb_BtnMovementBrowser_stub, this);
+    BtnMovement = new LFlatButton_c(2, 0, 1, 1, "Movimientos", "Explorar los movimientos posibles de un ensamblaje", cb_BtnMovementBrowser_stub, this);
     static_cast<LFlatButton_c*>(BtnMovement)->weight(1, 0);
 
     if (expertMode)
     {
       (new LFl_Box(3, 0))->setMinimumSize(SZ_GAP, 0);
 
-      BtnStep = new LFlatButton_c(4, 0, 1, 1, "Step", " Make one step in the assembler ", cb_BtnAssemblerStep_stub, this);
+      BtnStep = new LFlatButton_c(4, 0, 1, 1, "Paso", "Avanzar un paso en el ensamblador", cb_BtnAssemblerStep_stub, this);
       static_cast<LFlatButton_c*>(BtnStep)->weight(1, 0);
     } else
       BtnStep = 0;
@@ -4199,42 +4199,42 @@ void mainWindow_c::CreateSolveTab(void) {
     (new LFl_Box(0, 10))->setMinimumSize(0, SZ_GAP);
 
     SolvingProgress = new LFl_Progress(0, 11, 1, 1);
-    SolvingProgress->tooltip(" Progress of the whole solve: assembly search, and disassembly when it is enabled ");
+    SolvingProgress->tooltip("Progreso de toda la resolución: búsqueda de ensamblajes y desensamblaje cuando está activado");
     SolvingProgress->box(FL_ENGRAVED_BOX);
     SolvingProgress->selection_color((Fl_Color)4);
     SolvingProgress->align(FL_ALIGN_CENTER | FL_ALIGN_INSIDE);
 
     o = new layouter_c(0, 12);
 
-    (new LFl_Box("Activity: ", 0, 0, 1, 1))->stretchRight();
+    (new LFl_Box("Actividad:", 0, 0, 1, 1))->stretchRight();
     OutputActivity = new LFl_Output(1, 0, 3, 1);
     OutputActivity->box(FL_FLAT_BOX);
     OutputActivity->color(FL_BACKGROUND_COLOR);
-    OutputActivity->tooltip(" What is currently done ");
+    OutputActivity->tooltip("Lo que se está haciendo en este momento");
     OutputActivity->clear_visible_focus();
 
-    (new LFl_Box("Assemblies: ", 0, 1, 1, 1))->stretchRight();
+    (new LFl_Box("Ensamblajes:", 0, 1, 1, 1))->stretchRight();
     OutputAssemblies = new LFl_Value_Output(1, 1, 1, 1);
     OutputAssemblies->box(FL_FLAT_BOX);
     OutputAssemblies->step(1);   // make output NOT use scientific presentation for big numbers
-    OutputAssemblies->tooltip(" Number of assemblies found so far ");
+    OutputAssemblies->tooltip("Número de ensamblajes encontrados hasta ahora");
     static_cast<LFl_Value_Output*>(OutputAssemblies)->weight(2, 0);
 
-    (new LFl_Box("Solutions: ", 0, 2, 1, 1))->stretchRight();
+    (new LFl_Box("Soluciones:", 0, 2, 1, 1))->stretchRight();
     OutputSolutions = new LFl_Value_Output(1, 2, 1, 1);
     OutputSolutions->box(FL_FLAT_BOX);
     OutputSolutions->step(1);    // make output NOT use scientific presentation for big numbers
-    OutputSolutions->tooltip(" Number of solutions (assemblies that can be disassembled) found so far ");
+    OutputSolutions->tooltip("Número de soluciones (ensamblajes que se pueden desensamblar) encontradas hasta ahora");
 
-    (new LFl_Box("Time used: ", 2, 1, 1, 1))->stretchRight();
+    (new LFl_Box("Tiempo usado:", 2, 1, 1, 1))->stretchRight();
     TimeUsed = new LFl_Output(3, 1, 1, 1);
     TimeUsed->box(FL_NO_BOX);
     static_cast<LFl_Output*>(TimeUsed)->weight(4, 0);
 
-    (new LFl_Box("Time left: ", 2, 2, 1, 1))->stretchRight();
+    (new LFl_Box("Tiempo restante:", 2, 2, 1, 1))->stretchRight();
     TimeEst = new LFl_Output(3, 2, 1, 1);
     TimeEst->box(FL_NO_BOX);
-    TimeEst->tooltip(" This is a very approximate estimate and can be totally wrong, to take with a grain of salt ");
+    TimeEst->tooltip("Esta es una estimación muy aproximada y puede estar totalmente equivocada; tómala con pinzas");
 
     o->end();
 
@@ -4245,22 +4245,22 @@ void mainWindow_c::CreateSolveTab(void) {
     layouter_c * group = new layouter_c(0, 1);
     group->box(FL_FLAT_BOX);
 
-    new LSeparator_c(0, 0, 1, 1, "Solutions", true);
+    new LSeparator_c(0, 0, 1, 1, "Soluciones", true);
 
     layouter_c * o = new layouter_c(0, 1);
 
-    new LFl_Box("Solution", 0, 0, 1, 1);
+    new LFl_Box("Solución", 0, 0, 1, 1);
 
     // Gap between Solution and value
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
 
     SolutionsInfo = new LFl_Value_Output(2, 0, 1, 1);
-    SolutionsInfo->tooltip(" Number of solutions ");
+    SolutionsInfo->tooltip("Número de soluciones");
     SolutionsInfo->box(FL_FLAT_BOX);
     static_cast<LFl_Value_Output*>(SolutionsInfo)->weight(1, 0);
 
     SolutionSel = new LFl_Value_Slider(0, 1, 3, 1);
-    SolutionSel->tooltip(" Select one Solution ");
+    SolutionSel->tooltip("Selecciona una solución");
     SolutionSel->value(1);
     SolutionSel->type(1);
     SolutionSel->step(1);
@@ -4269,16 +4269,16 @@ void mainWindow_c::CreateSolveTab(void) {
 
     (new LFl_Box(0, 3))->setMinimumSize(0, SZ_GAP);
 
-    new LFl_Box("Move", 0, 4, 1, 1);
+    new LFl_Box("Mov.", 0, 4, 1, 1);
 
     MovesInfo = new LFl_Output(2, 4, 1, 1);
-    MovesInfo->tooltip(" Steps for complete disassembly ");
+    MovesInfo->tooltip("Pasos para el desensamblaje completo");
     MovesInfo->box(FL_FLAT_BOX);
     MovesInfo->color(FL_BACKGROUND_COLOR);
     static_cast<LFl_Output*>(MovesInfo)->weight(1, 0);
 
     SolutionAnim = new LFl_Value_Slider(0, 5, 3, 1);
-    SolutionAnim->tooltip(" Animate the disassembly ");
+    SolutionAnim->tooltip("Animar el desensamblaje");
     SolutionAnim->type(1);
     SolutionAnim->step(0.02);
     SolutionAnim->callback(cb_SolutionAnim_stub, this);
@@ -4290,8 +4290,8 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 3);
 
-    new LFl_Box("Assembly:", 0, 0, 1, 1);
-    new LFl_Box("Solution:", 2, 0, 1, 1);
+    new LFl_Box("Ensamblaje:", 0, 0, 1, 1);
+    new LFl_Box("Solución:", 2, 0, 1, 1);
 
     AssemblyNumber = new LFl_Value_Output(1, 0, 1, 1);
     SolutionNumber = new LFl_Value_Output(3, 0, 1, 1);
@@ -4308,18 +4308,18 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 5);
 
-    new LFl_Box("Sort by: ", 0, 0);
+    new LFl_Box("Ordenar por:", 0, 0);
 
-    BtnSrtFind =  new LFlatButton_c(1, 0, 1, 1, "Number", " Sort in the order the solutions were found ", cb_SrtFind_stub, this);
+    BtnSrtFind =  new LFlatButton_c(1, 0, 1, 1, "Número", "Ordenar según el orden en que se encontraron las soluciones", cb_SrtFind_stub, this);
     static_cast<LFlatButton_c*>(BtnSrtFind)->weight(1, 0);
     (new LFl_Box(2, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnSrtLevel = new LFlatButton_c(3, 0, 1, 1, "Level", " Sort in the order of increasing level ", cb_SrtLevel_stub, this);
+    BtnSrtLevel = new LFlatButton_c(3, 0, 1, 1, "Nivel", "Ordenar por nivel ascendente", cb_SrtLevel_stub, this);
     static_cast<LFlatButton_c*>(BtnSrtLevel)->weight(1, 0);
     (new LFl_Box(4, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnSrtMoves = new LFlatButton_c(5, 0, 1, 1, "Disasm", " Sort in the order of increasing moves for complete disassembly ", cb_SrtMoves_stub, this);
+    BtnSrtMoves = new LFlatButton_c(5, 0, 1, 1, "Desens", "Ordenar según el número creciente de movimientos para el desensamblaje completo", cb_SrtMoves_stub, this);
     static_cast<LFlatButton_c*>(BtnSrtMoves)->weight(1, 0);
     (new LFl_Box(6, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnSrtPieces = new LFlatButton_c(7, 0, 1, 1, "Pieces", " Sort in the order of used pieces ", cb_SrtPieces_stub, this);
+    BtnSrtPieces = new LFlatButton_c(7, 0, 1, 1, "Piezas", "Ordenar según el número de piezas usadas", cb_SrtPieces_stub, this);
     static_cast<LFlatButton_c*>(BtnSrtPieces)->weight(1, 0);
 
     o->end();
@@ -4328,21 +4328,21 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 7);
 
-    new LFl_Box("Delete: ", 0, 0);
+    new LFl_Box("Borrar:", 0, 0);
 
-    BtnDelAll =    new LFlatButton_c(1, 0, 1, 1, "All", " Delete all solutions ", cb_DelAll_stub, this);
+    BtnDelAll =    new LFlatButton_c(1, 0, 1, 1, "Todo", "Borrar todas las soluciones", cb_DelAll_stub, this);
     static_cast<LFlatButton_c*>(BtnDelAll)->weight(1, 0);
     (new LFl_Box(2, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelBefore = new LFlatButton_c(3, 0, 1, 1, "Before", " Delete all before the currently selected one ", cb_DelBefore_stub, this);
+    BtnDelBefore = new LFlatButton_c(3, 0, 1, 1, "Antes", "Borrar todas las anteriores a la seleccionada", cb_DelBefore_stub, this);
     static_cast<LFlatButton_c*>(BtnDelBefore)->weight(1, 0);
     (new LFl_Box(4, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelAt =     new LFlatButton_c(5, 0, 1, 1, "At", " Delete current solution ", cb_DelAt_stub, this);
+    BtnDelAt =     new LFlatButton_c(5, 0, 1, 1, "At", "Borrar la solución actual", cb_DelAt_stub, this);
     static_cast<LFlatButton_c*>(BtnDelAt)->weight(1, 0);
     (new LFl_Box(6, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelAfter =  new LFlatButton_c(7, 0, 1, 1, "After", " Delete all solutions after the currently selected one ", cb_DelAfter_stub, this);
+    BtnDelAfter =  new LFlatButton_c(7, 0, 1, 1, "Después", "Borrar todas las soluciones posteriores a la seleccionada", cb_DelAfter_stub, this);
     static_cast<LFlatButton_c*>(BtnDelAfter)->weight(1, 0);
     (new LFl_Box(8, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDelDisasm = new LFlatButton_c(9, 0, 1, 1, "w/o DA", " Delete all solutions without valid disassembly ", cb_DelDisasmless_stub, this);
+    BtnDelDisasm = new LFlatButton_c(9, 0, 1, 1, "w/o DA", "Borrar todas las soluciones sin desensamblaje válido", cb_DelDisasmless_stub, this);
     static_cast<LFlatButton_c*>(BtnDelDisasm)->weight(1, 0);
 
     o->end();
@@ -4351,19 +4351,19 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 9);
 
-    BtnDisasmDel    = new LFlatButton_c(0, 0, 1, 1, "D DA", " Remove the disassembly for the current solution ", cb_DelDisasm_stub, this);
+    BtnDisasmDel    = new LFlatButton_c(0, 0, 1, 1, "D DA", "Quitar el desensamblaje de la solución actual", cb_DelDisasm_stub, this);
     static_cast<LFlatButton_c*>(BtnDisasmDel)->weight(1, 0);
     (new LFl_Box(1, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDisasmDelAll = new LFlatButton_c(2, 0, 1, 1, "D A DA", " Remove the disassemblies for all solutions ", cb_DelAllDisasm_stub, this);
+    BtnDisasmDelAll = new LFlatButton_c(2, 0, 1, 1, "D A DA", "Quitar los desensamblajes de todas las soluciones", cb_DelAllDisasm_stub, this);
     static_cast<LFlatButton_c*>(BtnDisasmDelAll)->weight(1, 0);
     (new LFl_Box(3, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDisasmAdd    = new LFlatButton_c(4, 0, 1, 1, "A DA", " Recalculate the disassembly for the current solution ", cb_AddDisasm_stub, this);
+    BtnDisasmAdd    = new LFlatButton_c(4, 0, 1, 1, "A DA", "Recalcular el desensamblaje de la solución actual", cb_AddDisasm_stub, this);
     static_cast<LFlatButton_c*>(BtnDisasmAdd)->weight(1, 0);
     (new LFl_Box(5, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDisasmAddAll = new LFlatButton_c(6, 0, 1, 1, "A A DA", " Recalculate the disassemblies for all solutions ", cb_AddAllDisasm_stub, this);
+    BtnDisasmAddAll = new LFlatButton_c(6, 0, 1, 1, "A A DA", "Recalcular los desensamblajes de todas las soluciones", cb_AddAllDisasm_stub, this);
     static_cast<LFlatButton_c*>(BtnDisasmAddAll)->weight(1, 0);
     (new LFl_Box(7, 0))->setMinimumSize(SZ_GAP, 0);
-    BtnDisasmAddMissing=new LFlatButton_c(8, 0, 1, 1, "A M DA", " Recalculate the missing disassemblies for all solutions without valid disassembly ", cb_AddMissingDisasm_stub, this);
+    BtnDisasmAddMissing=new LFlatButton_c(8, 0, 1, 1, "A M DA", "Recalcular los desensamblajes faltantes de las soluciones sin desensamblaje válido", cb_AddMissingDisasm_stub, this);
     static_cast<LFlatButton_c*>(BtnDisasmAddMissing)->weight(1, 0);
 
     o->end();
@@ -4372,8 +4372,8 @@ void mainWindow_c::CreateSolveTab(void) {
 
     o = new layouter_c(0, 11);
 
-    BtnExportSolutionSTL = new LFlatButton_c(0, 0, 1, 1, "Export Solution to STL",
-        " Export every piece type of the currently selected solution to individual STL files ",
+    BtnExportSolutionSTL = new LFlatButton_c(0, 0, 1, 1, "Exportar solución a STL",
+        "Exportar cada tipo de pieza de la solución seleccionada a archivos STL individuales",
         cb_ExportSolutionSTL_stub, this);
     static_cast<LFlatButton_c*>(BtnExportSolutionSTL)->weight(1, 0);
 
@@ -4384,7 +4384,7 @@ void mainWindow_c::CreateSolveTab(void) {
     PcVis = new PieceVisibility(0, 0, 100, 100);
     LBlockListGroup_c * shapeGroup = new LBlockListGroup_c(0, 13, 1, 1, PcVis);
     shapeGroup->callback(cb_PcVis_stub, this);
-    shapeGroup->tooltip(" Change appearance of the pieces between normal, grid and invisible ");
+    shapeGroup->tooltip("Cambiar la apariencia de las piezas entre normal, rejilla e invisible");
     shapeGroup->weight(1, 1);
 
     group->end();

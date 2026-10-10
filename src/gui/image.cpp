@@ -132,7 +132,7 @@ int image_c::saveToPNG(const char * fname) const {
   FILE *fi = fopen(fname, "wb");
   if (!fi)
   {
-    fprintf(stderr, "\nError: Couldn't open file!\n%s\n\n", fname);
+    fprintf(stderr, "\nError: No se pudo abrir el archivo!\n%s\n\n", fname);
     return 0;
   }
 
@@ -140,7 +140,7 @@ int image_c::saveToPNG(const char * fname) const {
   if (png_ptr == NULL)
   {
     fclose(fi);
-    fprintf(stderr, "\nError: Couldn't save the image!\n%s\n\n", fname);
+    fprintf(stderr, "\nError: No se pudo guardar la imagen!\n%s\n\n", fname);
     return 0;
   }
 
@@ -149,7 +149,7 @@ int image_c::saveToPNG(const char * fname) const {
   {
     fclose(fi);
     png_destroy_write_struct(&png_ptr, (png_infopp) NULL);
-    fprintf(stderr, "\nError: Couldn't save the image!\n%s\n\n", fname);
+    fprintf(stderr, "\nError: No se pudo guardar la imagen!\n%s\n\n", fname);
     return 0;
   }
 
@@ -157,7 +157,7 @@ int image_c::saveToPNG(const char * fname) const {
   {
     fclose(fi);
     png_destroy_write_struct(&png_ptr, &info_ptr);
-    fprintf(stderr, "\nError: Couldn't save the image!\n%s\n\n", fname);
+    fprintf(stderr, "\nError: No se pudo guardar la imagen!\n%s\n\n", fname);
     return 0;
   }
 

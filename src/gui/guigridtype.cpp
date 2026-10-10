@@ -72,11 +72,11 @@ char * guiGridType_c::getIcon(void) const {
 
 const char * guiGridType_c::getName(void) const {
   switch(gt->getType()) {
-    case gridType_c::GT_BRICKS: return "Brick";
-    case gridType_c::GT_TRIANGULAR_PRISM: return "Triangular Prism";
-    case gridType_c::GT_SPHERES: return "Spheres";
-    case gridType_c::GT_RHOMBIC: return "Rhombic Tetrahedra";
-    case gridType_c::GT_TETRA_OCTA: return "Tetrahedra-Octahera";
+    case gridType_c::GT_BRICKS: return "Ladrillo";
+    case gridType_c::GT_TRIANGULAR_PRISM: return "Prisma triangular";
+    case gridType_c::GT_SPHERES: return "Esferas";
+    case gridType_c::GT_RHOMBIC: return "Tetraedros rómbicos";
+    case gridType_c::GT_TETRA_OCTA: return "Tetraedros-Octaedros";
     default: return 0;
   }
 }

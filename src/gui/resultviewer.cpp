@@ -37,7 +37,7 @@ void ResultViewer_c::setPuzzle(problem_c * p) {
 
 void ResultViewer_c::draw(void) {
   if (!puzzle || !puzzle->resultValid()) {
-    label("No Result");
+    label("Sin resultado");
     color(bg);
     labelcolor(fl_rgb_color(255, 0, 0));
   } else {
@@ -46,9 +46,9 @@ void ResultViewer_c::draw(void) {
     unsigned int result = puzzle->getResultId();
 
     if (getResultShape(*puzzle)->getName().length())
-      snprintf(txt, 120, "Result: S%u - %s", result+1, getResultShape(*puzzle)->getName().c_str());
+      snprintf(txt, 120, "Resultado: S%u - %s", result+1, getResultShape(*puzzle)->getName().c_str());
     else
-      snprintf(txt, 19, "Result: S%u", result + 1);
+      snprintf(txt, 19, "Resultado: S%u", result + 1);
 
     // unsigned char r, g, b;
 

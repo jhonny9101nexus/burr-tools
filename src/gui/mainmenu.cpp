@@ -73,34 +73,34 @@ namespace {
    * application menu, built in installApplicationMenu() below.
    */
   Fl_Menu_Item menu_Mac[] = {
-    { "&File",             0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"New",              FL_COMMAND + 'n', cb_New_stub,       0, 0, 0, 0, 14, 56},
-      {"Open...",          FL_COMMAND + 'o', cb_Load_stub,      0, 0, 0, 0, 14, 56},
-      {"Import...",        0,                cb_Load_Ps3d_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
-      {"Save",             FL_COMMAND + 's', cb_Save_stub,      0, 0, 0, 0, 14, 56},
-      {"Save As...",       FL_COMMAND + FL_SHIFT + 's', cb_SaveAs_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
-      { "Export",          0, 0, 0, FL_SUBMENU | FL_MENU_DIVIDER, 0, 0, 0, 0 },
-        {"Image...",        0, cb_ImageExport_stub,       0, 0, 0, 0, 14, 56},
-        {"Vector Image...", 0, cb_ImageExportVector_stub, 0, 0, 0, 0, 14, 56},
+    { "&Archivo",             0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+      {"Nuevo",              FL_COMMAND + 'n', cb_New_stub,       0, 0, 0, 0, 14, 56},
+      {"Abrir...",          FL_COMMAND + 'o', cb_Load_stub,      0, 0, 0, 0, 14, 56},
+      {"Importar...",        0,                cb_Load_Ps3d_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
+      {"Guardar",             FL_COMMAND + 's', cb_Save_stub,      0, 0, 0, 0, 14, 56},
+      {"Guardar como...",       FL_COMMAND + FL_SHIFT + 's', cb_SaveAs_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
+      { "Exportar",          0, 0, 0, FL_SUBMENU | FL_MENU_DIVIDER, 0, 0, 0, 0 },
+        {"Imagen...",        0, cb_ImageExport_stub,       0, 0, 0, 0, 14, 56},
+        {"Imagen vectorial...", 0, cb_ImageExportVector_stub, 0, 0, 0, 0, 14, 56},
         {"STL...",          0, cb_STLExport_stub,         0, 0, 0, 0, 14, 56},
         { },
-      {"Close",            FL_COMMAND + 'w', cb_Quit_stub,      0, 0, 0, 0, 14, 56},
+      {"Cerrar",            FL_COMMAND + 'w', cb_Quit_stub,      0, 0, 0, 0, 14, 56},
       { },
-    { "&Edit",             0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"Undo", FL_COMMAND+'z',           cb_Undo_stub, 0, 0, 0, 0, 14, 56},
-      {"Redo", FL_COMMAND+FL_SHIFT+'z', cb_Redo_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
+    { "&Edición",             0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+      {"Deshacer", FL_COMMAND+'z',           cb_Undo_stub, 0, 0, 0, 0, 14, 56},
+      {"Rehacer", FL_COMMAND+FL_SHIFT+'z', cb_Redo_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
       { },
     { "&Puzzle",           0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"Edit Comment...",      0, cb_Comment_stub,            0, 0, 0, 0, 14, 56},
-      {"Convert...",           0, cb_Convert_stub,            0, 0, 0, 0, 14, 56},
-      {"Import Assemblies...", 0, cb_AssembliesToShapes_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
-      {"Status",           FL_COMMAND + 'i', cb_StatusWindow_stub, 0, 0, 0, 0, 14, 56},
+      {"Editar comentario...",      0, cb_Comment_stub,            0, 0, 0, 0, 14, 56},
+      {"Convertir...",           0, cb_Convert_stub,            0, 0, 0, 0, 14, 56},
+      {"Importar ensamblajes...", 0, cb_AssembliesToShapes_stub, 0, FL_MENU_DIVIDER, 0, 0, 14, 56},
+      {"Estado",           FL_COMMAND + 'i', cb_StatusWindow_stub, 0, 0, 0, 0, 14, 56},
       { },
-    { "&View",             0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"Toggle 3D",        FL_COMMAND + '3', cb_Toggle3D_stub, 0, 0, 0, 0, 14, 56},
+    { "&Ver",             0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+      {"Alternar 3D",        FL_COMMAND + '3', cb_Toggle3D_stub, 0, 0, 0, 0, 14, 56},
       { },
-    { "Help",              0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
-      {"BurrTools User Guide", FL_COMMAND + '?', cb_Help_stub, 0, 0, 0, 0, 14, 56},
+    { "Ayuda",              0, 0, 0, FL_SUBMENU, 0, 0, 0, 0 },
+      {"Guía de usuario de BurrTools", FL_COMMAND + '?', cb_Help_stub, 0, 0, 0, 0, 14, 56},
       { },
     { }
   };
@@ -215,7 +215,7 @@ void mainmenu::installApplicationMenu(mainWindow_c * win) {
    * initialiser because the window does not exist until runtime.
    */
   static Fl_Menu_Item appItems[] = {
-    { "Settings...", FL_COMMAND + ',', cb_Config_stub, 0, 0, 0, 0, 14, 56 },
+    { "Configuración...", FL_COMMAND + ',', cb_Config_stub, 0, 0, 0, 0, 14, 56 },
     { }
   };
   appItems[0].user_data(win);

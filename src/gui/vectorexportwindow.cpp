@@ -37,7 +37,7 @@ static void cb_Button2_stub(Fl_Widget* /*o*/, void* v) { ((vectorExportWindow_c*
 static void cb_FileChoose_stub(Fl_Widget* /*o*/, void* v) { ((vectorExportWindow_c*)v)->cb_FileChoose(); }
 void vectorExportWindow_c::cb_FileChoose(void) {
 
-  const char * newFile = fileChooser("File to save image to", "", "", inp->value(), true);
+  const char * newFile = fileChooser("Archivo donde guardar la imagen", "", "", inp->value(), true);
 
   if (newFile)
     inp->value(newFile);
@@ -45,11 +45,11 @@ void vectorExportWindow_c::cb_FileChoose(void) {
 
 vectorExportWindow_c::vectorExportWindow_c(void) : LFl_Double_Window(false) {
 
-  label("Parameters for Vector Export");
+  label("Parámetros para la exportación vectorial");
 
   layouter_c * o = new layouter_c(0, 0, 1, 1);
 
-  (new LFl_Box("Filename:", 0, 0, 3, 1))->stretchLeft();;
+  (new LFl_Box("Nombre de archivo:", 0, 0, 3, 1))->stretchLeft();;
 
   inp = new LFl_Input(0, 1, 1, 1);
   inp->weight(1, 0);
@@ -62,7 +62,7 @@ vectorExportWindow_c::vectorExportWindow_c(void) : LFl_Double_Window(false) {
 
   (new LFl_Box(0, 1, 1, 1))->setMinimumSize(0, 5);
 
-  (new LFl_Box("File type:", 0, 2, 1, 1))->stretchLeft();
+  (new LFl_Box("Tipo de archivo:", 0, 2, 1, 1))->stretchLeft();
 
   o = new layouter_c(0, 3, 1, 1);
 
@@ -83,10 +83,10 @@ vectorExportWindow_c::vectorExportWindow_c(void) : LFl_Double_Window(false) {
 
   o = new layouter_c(0, 5, 1, 1);
 
-  btn = new LFl_Button("Export", 0, 0, 1, 1);
+  btn = new LFl_Button("Exportar", 0, 0, 1, 1);
   btn->callback(cb_Button1_stub, this);
   btn->weight(1, 0);
-  btn = new LFl_Button("Cancel", 2, 0, 1, 1);
+  btn = new LFl_Button("Cancelar", 2, 0, 1, 1);
   btn->callback(cb_Button2_stub, this);
   btn->weight(1, 0);
 

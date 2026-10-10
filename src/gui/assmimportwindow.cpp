@@ -42,8 +42,8 @@ assmImportWindow_c::assmImportWindow_c(const puzzle_c * puzzle) : LFl_Double_Win
 {
   if (puzzle->getNumberOfProblems() == 0)
   {
-    new LFl_Box("You need a problem with solutions to\nimport assemblies.", 0, 0, 1, 1);
-    (new LFl_Button("Abort", 0, 1, 1, 1))->callback(cb_WindowButton_stub, this);
+    new LFl_Box("Necesitas un problema con soluciones para\nimportar ensamblajes.", 0, 0, 1, 1);
+    (new LFl_Button("Abortar", 0, 1, 1, 1))->callback(cb_WindowButton_stub, this);
     return;
   }
 
@@ -52,30 +52,30 @@ assmImportWindow_c::assmImportWindow_c(const puzzle_c * puzzle) : LFl_Double_Win
   layouter_c * o = new layouter_c(0, 0);
   o->pitch(5);
 
-  new LSeparator_c(0, ypos++, 1, 1, "Source", false);
+  new LSeparator_c(0, ypos++, 1, 1, "Origen", false);
 
   problemSelectorSrc = new ProblemSelector(0, 0, 100, 100, puzzle);
   LBlockListGroup_c * probGroup = new LBlockListGroup_c(0, ypos++, 1, 1, problemSelectorSrc);
   probGroup->setMinimumSize(0, 70);
 
-  new LSeparator_c(0, ypos++, 1, 1, "Destination", false);
+  new LSeparator_c(0, ypos++, 1, 1, "Destino", false);
 
-  rdDontAdd = new LFl_Radio_Button("Just add shapes to puzzle", 0, ypos++, 1, 1);
-  rdAddNew = new LFl_Radio_Button("Add shapes to a new problem", 0, ypos++, 1, 1);
-  rdAddDst = new LFl_Radio_Button("Add shapes to existing problem", 0, ypos++, 1, 1);
+  rdDontAdd = new LFl_Radio_Button("Solo añadir formas al puzzle", 0, ypos++, 1, 1);
+  rdAddNew = new LFl_Radio_Button("Añadir formas a un problema nuevo", 0, ypos++, 1, 1);
+  rdAddDst = new LFl_Radio_Button("Añadir formas a un problema existente", 0, ypos++, 1, 1);
   rdDontAdd->set();
 
   problemSelectorDst = new ProblemSelector(0, 0, 100, 100, puzzle);
   probGroup = new LBlockListGroup_c(0, ypos++, 1, 1, problemSelectorDst);
   probGroup->setMinimumSize(0, 70);
 
-  new LSeparator_c(0, ypos++, 1, 1, "Range", false);
+  new LSeparator_c(0, ypos++, 1, 1, "Rango", false);
 
   {
     layouter_c * o = new layouter_c(0, ypos++);
 
-    (new LFl_Box("Range min", 0, 0))->stretchRight();
-    (new LFl_Box("Range max", 0, 1))->stretchRight();
+    (new LFl_Box("Rango mín.", 0, 0))->stretchRight();
+    (new LFl_Box("Rango máx.", 0, 1))->stretchRight();
     (new LFl_Box("", 1, 0))->setMinimumSize(5, 0);
     min = new LFl_Int_Input(2, 0);
     max = new LFl_Int_Input(2, 1);
@@ -88,32 +88,32 @@ assmImportWindow_c::assmImportWindow_c(const puzzle_c * puzzle) : LFl_Double_Win
   }
 
 
-  new LSeparator_c(0, ypos++, 1, 1, "Filter", false);
+  new LSeparator_c(0, ypos++, 1, 1, "Filtro", false);
 
   // The filter group
-  ckDrpDisconnected = new LFl_Check_Button("Drop disconnected shapes", 0, ypos++, 1, 1);
+  ckDrpDisconnected = new LFl_Check_Button("Descartar formas desconectadas", 0, ypos++, 1, 1);
   ckDrpDisconnected->value(1);
-  ckDrpMirror = new LFl_Check_Button("Drop shapes with mirror symmetry", 0, ypos++, 1, 1);
-  ckDrpSymm = new LFl_Check_Button("Drop all shapes with a symmetry", 0, ypos++, 1, 1);
+  ckDrpMirror = new LFl_Check_Button("Descartar formas con simetría de espejo", 0, ypos++, 1, 1);
+  ckDrpSymm = new LFl_Check_Button("Descartar todas las formas con alguna simetría", 0, ypos++, 1, 1);
   if (puzzle->getGridType()->getType() == gridType_c::GT_BRICKS)
   {
-    ckDrpMillable = new LFl_Check_Button("Drop non millable shapes", 0, ypos++, 1, 1);
-    ckDrpNotchable = new LFl_Check_Button("Drop non notchable shapes", 0, ypos++, 1, 1);
+    ckDrpMillable = new LFl_Check_Button("Descartar formas no fresables", 0, ypos++, 1, 1);
+    ckDrpNotchable = new LFl_Check_Button("Descartar formas no notchable", 0, ypos++, 1, 1);
   }
   else
   {
     ckDrpMillable = ckDrpNotchable = 0;
   }
 
-  ckDrpIdentical = new LFl_Check_Button("Remove identical shapes", 0, ypos++, 1, 1);
+  ckDrpIdentical = new LFl_Check_Button("Quitar formas idénticas", 0, ypos++, 1, 1);
   ckDrpIdentical->value(1);
   ckDrpIdentical->set();
 
   {
     layouter_c * o = new layouter_c(0, ypos++);
 
-    (new LFl_Box("Shape min", 0, 0))->stretchRight();
-    (new LFl_Box("Shape max", 0, 1))->stretchRight();
+    (new LFl_Box("Forma mín.", 0, 0))->stretchRight();
+    (new LFl_Box("Forma máx.", 0, 1))->stretchRight();
     (new LFl_Box("", 1, 0))->setMinimumSize(5, 0);
     shapeMin = new LFl_Int_Input(2, 0);
     shapeMax = new LFl_Int_Input(2, 1);
@@ -132,12 +132,12 @@ assmImportWindow_c::assmImportWindow_c(const puzzle_c * puzzle) : LFl_Double_Win
   o = new layouter_c(0, 1);
   o->pitch(5);
 
-  (new LFl_Button("Continue", 0, 0, 1, 1))->callback(cb_WindowButton_stub2, this);
-  (new LFl_Button("Abort", 1, 0, 1, 1))->callback(cb_WindowButton_stub, this);
+  (new LFl_Button("Continuar", 0, 0, 1, 1))->callback(cb_WindowButton_stub2, this);
+  (new LFl_Button("Abortar", 1, 0, 1, 1))->callback(cb_WindowButton_stub, this);
 
   o->end();
 
-  label("Convert Assemblies to Shapes");
+  label("Convertir ensamblajes en formas");
 
 }
 

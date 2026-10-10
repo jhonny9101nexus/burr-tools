@@ -119,26 +119,26 @@ void configuration_c::register_entry(const char *cnf_name, cnf_type cnf_typ, voi
 
 configuration_c::configuration_c(void) {
 
-  CNF_BOOL_D("tooltips",          &i_use_tooltips, "Use Tooltips",
-             "Show short help text when the mouse rests on buttons and other controls.",
+  CNF_BOOL_D("tooltips",          &i_use_tooltips, "Usar ayudas emergentes",
+             "Mostrar un texto breve de ayuda cuando el mouse se queda sobre botones y otros controles.",
              "true");
-  CNF_BOOL_D("lightning",         &i_use_lightning, "Use Lights in 3D View",
-             "Light the 3D preview so pieces look solid and shaded. Turn this off for a flatter, unlit appearance.",
+  CNF_BOOL_D("lightning",         &i_use_lightning, "Usar iluminación en la vista 3D",
+             "Iluminar la vista previa 3D para que las piezas se vean sólidas y con sombras. Desactívalo para un aspecto más plano, sin iluminación.",
              "true");
-  CNF_BOOL_D("fadeout",           &i_use_blendedRemoving, "Fade Out Pieces",
-             "During a disassembly animation, pieces that have been removed fade away instead of vanishing at once.",
+  CNF_BOOL_D("fadeout",           &i_use_blendedRemoving, "Desvanecer piezas",
+             "Durante la animación del desensamblaje, las piezas quitadas se desvanecen poco a poco en vez de desaparecer de golpe.",
              "true");
-  CNF_BOOL_D("displaylists",      &i_use_displayLists, "Use openGL display lists",
-             "Cache 3D geometry in OpenGL display lists. This can speed up redraws on some systems, but it is off by default because it can cause display problems.",
+  CNF_BOOL_D("displaylists",      &i_use_displayLists, "Usar listas de visualización de OpenGL",
+             "Guardar en caché la geometría 3D en listas de visualización de OpenGL. Esto puede acelerar el redibujado en algunos sistemas, pero está desactivado por defecto porque puede causar problemas de visualización.",
              "false");
-  CNF_BOOL_D("rotator",           &i_rotationMethod, "Use new rotation method",
-             "Use the newer click-and-drag method for rotating the 3D preview. Turn this off to use the original arc-ball rotation.",
+  CNF_BOOL_D("rotator",           &i_rotationMethod, "Usar el nuevo método de rotación",
+             "Usar el método nuevo de clic y arrastre para rotar la vista previa 3D. Desactívalo para usar la rotación original tipo arc-ball.",
              "true");
-  CNF_BOOL_D("reversescrollzoom", &i_reverseScrollZoom, "Reverse scroll zoom direction",
-             "Reverse the direction of the preview zoom when the mouse wheel is used.",
+  CNF_BOOL_D("reversescrollzoom", &i_reverseScrollZoom, "Invertir la dirección del zoom con la rueda",
+             "Invertir la dirección del zoom de la vista previa al usar la rueda del mouse.",
              "false");
-  CNF_BOOL_D("showviewcube", &i_show_view_cube, "Show View Cube",
-             "Display the 3D orientation cube in the corner of the 3D preview. Click it to snap to a face, edge, or corner view.",
+  CNF_BOOL_D("showviewcube", &i_show_view_cube, "Mostrar cubo de vista",
+             "Mostrar el cubo de orientación 3D en la esquina de la vista previa. Haz clic en él para ajustar la vista a una cara, arista o vértice.",
              "true");
   {
     unsigned int hw = std::thread::hardware_concurrency();
@@ -150,14 +150,14 @@ configuration_c::configuration_c(void) {
 
     static const char * undoChoices[] = { "25", "50", "100", "200", nullptr };
     CNF_CHOICE_D("undodepth", &i_undo_depth_idx,
-                 "Undo History Depth",
-                 "Number of undo steps kept in memory. Higher values use more RAM for large puzzles.",
+                 "Profundidad del historial de deshacer",
+                 "Número de pasos de deshacer guardados en memoria. Valores más altos usan más RAM en puzzles grandes.",
                  "0",  /* default index 0 = 25 steps */
                  undoChoices);
 
-    CNF_INT_D_RANGE("numthreads", &i_num_threads, "Worker Threads",
-               "Threads used for assembling and disassembling. Both stages share "
-               "this pool, so raising it speeds up both.",
+    CNF_INT_D_RANGE("numthreads", &i_num_threads, "Hilos de trabajo",
+               "Hilos usados para ensamblar y desensamblar. Ambas etapas comparten"
+               "este grupo, así que aumentarlo acelera ambas.",
                i_num_threads_default.c_str(), 1, (int)hw);
   }
   CNF_BOOL("rubberband",          &i_use_rubberband, "false");
@@ -376,18 +376,18 @@ void configuration_c::dialog(void) {
 
   int tw = 0, th = 0;
   fl_font(FL_HELVETICA, FL_NORMAL_SIZE);
-  fl_measure("Restore Defaults", tw, th);
+  fl_measure("Restaurar valores", tw, th);
   int bw = 2 * (tw + 4);
 
-  LFl_Button * restore = new LFl_Button("Restore Defaults", 1, 0);
-  restore->tooltip("Restore all settings to their default values");
+  LFl_Button * restore = new LFl_Button("Restaurar valores", 1, 0);
+  restore->tooltip("Restaurar todas las opciones a sus valores predeterminados");
   restore->callback(cb_RestoreDefaults_stub, this);
   restore->setMinimumSize(bw, th + 10);
 
   (new LFl_Box(2, 0))->setMinimumSize(12, 0);
 
-  LFl_Button * btn = new LFl_Button("Close", 3, 0);
-  btn->tooltip("Close window");
+  LFl_Button * btn = new LFl_Button("Cerrar", 3, 0);
+  btn->tooltip("Cerrar ventana");
   btn->callback(cb_ConfigDialog_stub, win.get());
   btn->setMinimumSize(bw, th + 10);
 
@@ -395,7 +395,7 @@ void configuration_c::dialog(void) {
   body->end();
 
   win->end();
-  win->label("Settings");
+  win->label("Configuración");
 
   win->set_modal();
   win->show();

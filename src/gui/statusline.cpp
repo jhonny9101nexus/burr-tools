@@ -37,33 +37,33 @@ LStatusLine::LStatusLine(int x, int y, int w, int h) : layouter_c(x, y, w, h) {
 
   b = mode->addButton();
   b->image(pm.get(ViewModeNormal_xpm));
-  b->tooltip(" Display normally with shape color ");
+  b->tooltip("Mostrar normalmente con el color de la forma");
 
   b = mode->addButton();
   b->image(pm.get(ViewModeColor_xpm));
-  b->tooltip(" Display with colour constraint colors ");
+  b->tooltip("Mostrar con los colores de las restricciones de color");
 
   b = mode->addButton();
   b->image(pm.get(ViewMode3D_xpm));
-  b->tooltip(" Display in anaglyph mode ");
+  b->tooltip("Mostrar en modo anaglifo");
 
   b = mode->addButton();
   b->image(pm.get(ViewMode3DL_xpm));
-  b->tooltip(" Display in anaglyph mode with glasses swapped ");
+  b->tooltip("Mostrar en modo anaglifo con las gafas invertidas");
 
   rstyle = new ButtonGroup_c(2, 0, 1, 1);
 
   b = rstyle->addButton();
   b->image(pm.get(RenderModeVoxel_xpm));
-  b->tooltip(" Draw each voxel separately ");
+  b->tooltip("Dibujar cada vóxel por separado");
 
   b = rstyle->addButton();
   b->image(pm.get(RenderModeEdges_xpm));
-  b->tooltip(" Draw flat faces with lines at the real edges ");
+  b->tooltip("Dibujar caras planas con líneas en las aristas reales");
 
   b = rstyle->addButton();
   b->image(pm.get(RenderModeSTL_xpm));
-  b->tooltip(" Draw pieces like the STL export produces them ");
+  b->tooltip("Dibujar las piezas como las produce la exportación STL");
 
   rstyle->select(config.renderStyle());
 

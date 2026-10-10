@@ -88,7 +88,7 @@ VoxelEditGroup_c::VoxelEditGroup_c(int x, int y, int w, int h, puzzle_c * puzzle
   h = 300;
 
   zselect = new Fl_Slider(x, y, 15, h);
-  zselect->tooltip(" Select Z Plane ");
+  zselect->tooltip("Seleccionar el plano Z");
   zselect->color((Fl_Color)237);
   zselect->step(1);
   zselect->callback(cb_VoxelEditGroupZselect_stub, this);
@@ -108,7 +108,7 @@ VoxelEditGroup_c::VoxelEditGroup_c(int x, int y, int w, int h, puzzle_c * puzzle
   }
 
   sqedit = ggt->getGridEditor(x+35, y, w-35, h-10, puzzle);
-  sqedit->tooltip(" Fill and empty voxels ");
+  sqedit->tooltip("Rellenar y vaciar vóxeles");
   sqedit->box(FL_NO_BOX);
   sqedit->callback(cb_VoxelEditGroupSqedit_stub, this);
   sqedit->clear_visible_focus();
@@ -121,7 +121,7 @@ void VoxelEditGroup_c::newGridType(const guiGridType_c * ggt, puzzle_c * puzzle)
   gridEditor_c * nsq;
 
   nsq = ggt->getGridEditor(sqedit->x(), sqedit->y(), sqedit->w(), sqedit->h(), puzzle);
-  nsq->tooltip(" Fill and empty voxels ");
+  nsq->tooltip("Rellenar y vaciar vóxeles");
   nsq->box(FL_NO_BOX);
   nsq->callback(cb_VoxelEditGroupSqedit_stub, this);
   nsq->clear_visible_focus();

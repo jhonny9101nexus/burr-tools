@@ -64,7 +64,7 @@ LView3dGroup::LView3dGroup(int x, int y, int w, int h) : Fl_Group(0, 0, 50, 50),
   View3D->setZoomAnimCallback(zoomAnimCbStub, this);
 
   slider = new Fl_Slider(x+w-15, y, 15, h);
-  slider->tooltip("Zoom view.");
+  slider->tooltip("Ampliar vista.");
   slider->maximum(6);
   slider->minimum(0);
   slider->step(0.01);

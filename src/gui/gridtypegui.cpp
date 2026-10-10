@@ -31,24 +31,24 @@
 
 gridTypeGui_0_c::gridTypeGui_0_c(int x, int y, int w, int h, gridType_c * /*gt*/) {
 
-  new LFl_Box("In a distant future there might be parameters\n"
-      "to stretch and shear the cube into a parallelepiped\n"
-      "but not right now!!", x, y, w, h);
+  new LFl_Box("En un futuro lejano podría haber parámetros\n"
+      "para estirar y deformar el cubo en un paralelepípedo\n"
+      "pero no por ahora!!", x, y, w, h);
 
   end();
 }
 
 gridTypeGui_1_c::gridTypeGui_1_c(int x, int y, int w, int h, gridType_c * /*gt*/) {
-  new LFl_Box("There are no parameters for this space grid!\n"
-      "This space grid also has no disassembler (yet)", x, y, w, h);
+  new LFl_Box("No hay parámetros para esta rejilla espacial!\n"
+      "Esta rejilla espacial tampoco tiene desensamblador (todavía)", x, y, w, h);
 
   end();
 }
 
 gridTypeGui_2_c::gridTypeGui_2_c(int x, int y, int w, int h, gridType_c * /*gt*/) {
 
-  new LFl_Box("There are no parameters for this space grid!\n"
-      "This space grid has no disassembler", x, y, w, h);
+  new LFl_Box("No hay parámetros para esta rejilla espacial!\n"
+      "Esta rejilla espacial no tiene desensamblador", x, y, w, h);
 
   end();
 }
@@ -68,11 +68,11 @@ class gridTypeInfos_c {
 static void cb_WindowButton_stub(Fl_Widget * /*o*/, void *v) { ((Fl_Double_Window*)(v))->hide(); }
 
 gridTypeParameterWindow_c::gridTypeParameterWindow_c(guiGridType_c * ggt) : LFl_Double_Window(false) {
-  label("Set parameters for grid type");
+  label("Definir parámetros del tipo de rejilla");
 
   ggt->getConfigurationDialog(0, 0, 1, 1);
 
-  LFl_Button * b = new LFl_Button("Close", 0, 1);
+  LFl_Button * b = new LFl_Button("Cerrar", 0, 1);
   b->pitch(7);
   b->callback(cb_WindowButton_stub, this);
 }
@@ -102,7 +102,7 @@ gridTypeSelectorWindow_c::gridTypeSelectorWindow_c(void) : LFl_Double_Window(fal
 
   /* from here on the code should not need changes when new grid types are added */
 
-  label("Select space grid");
+  label("Seleccionar rejilla espacial");
 
   LFl_Frame *fr;
 
@@ -122,11 +122,11 @@ gridTypeSelectorWindow_c::gridTypeSelectorWindow_c(void) : LFl_Double_Window(fal
     fr->end();
   }
 
-  (new LFl_Box("Attention: Concrete values within the\n"
-      "parameters are never evaluated, the solver only\n"
-      "cares for equal and not equal. So if you want something\n"
-      "that is twice as high as wide, assemble is out of\n"
-      "several unit pieces.", 1, 0))->pitch(7);
+  (new LFl_Box("Atención: los valores concretos dentro de los\n"
+      "parámetros nunca se evalúan, el resolutor solo\n"
+      "tiene en cuenta igual y distinto. Así que si quieres algo\n"
+      "que sea el doble de alto que de ancho, ensámblalo a partir de\n"
+      "varias piezas unitarias.", 1, 0))->pitch(7);
 
   /* now all the parameter boxes, only the first one is visible, the others are hidden for now */
   {

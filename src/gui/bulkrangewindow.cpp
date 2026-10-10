@@ -42,13 +42,13 @@ bulkRangeWindow_c::bulkRangeWindow_c(void) : LFl_Double_Window(false), _ok(false
   layouter_c * o = new layouter_c(0, 0);
   o->pitch(5);
 
-  new LSeparator_c(0, ypos++, 1, 1, "Set Range for All Pieces", false);
+  new LSeparator_c(0, ypos++, 1, 1, "Definir rango para todas las piezas", false);
 
   {
     layouter_c * row = new layouter_c(0, ypos++);
 
-    (new LFl_Box("Min count", 0, 0))->stretchRight();
-    (new LFl_Box("Max count", 0, 1))->stretchRight();
+    (new LFl_Box("Cantidad mín.", 0, 0))->stretchRight();
+    (new LFl_Box("Cantidad máx.", 0, 1))->stretchRight();
     (new LFl_Box("", 1, 0))->setMinimumSize(5, 0);
     minInput = new LFl_Int_Input(2, 0);
     maxInput = new LFl_Int_Input(2, 1);
@@ -67,12 +67,12 @@ bulkRangeWindow_c::bulkRangeWindow_c(void) : LFl_Double_Window(false), _ok(false
   o = new layouter_c(0, 1);
   o->pitch(5);
 
-  (new LFl_Button("Apply to All", 0, 0, 1, 1))->callback(cb_Ok_stub, this);
-  (new LFl_Button("Cancel",       1, 0, 1, 1))->callback(cb_Cancel_stub, this);
+  (new LFl_Button("Aplicar a todo", 0, 0, 1, 1))->callback(cb_Ok_stub, this);
+  (new LFl_Button("Cancelar",       1, 0, 1, 1))->callback(cb_Cancel_stub, this);
 
   o->end();
 
-  label("Bulk Set Piece Range");
+  label("Definir rango de piezas en lote");
 }
 
 unsigned int bulkRangeWindow_c::getMin(void) const { return (unsigned int)atoi(minInput->value()); }

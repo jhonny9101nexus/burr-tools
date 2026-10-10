@@ -83,7 +83,7 @@ AddMovementDialog::AddMovementDialog(movementCache_c * c, const std::vector<unsi
 
   layouter_c * o = new layouter_c(0, 0, 1, 1);
 
-  new LFl_Box("Direction", 0, 0, 1, 1);
+  new LFl_Box("Dirección", 0, 0, 1, 1);
 
   bool twoColumns = 2*c->numDirections() > pieces.size();
 
@@ -129,7 +129,7 @@ AddMovementDialog::AddMovementDialog(movementCache_c * c, const std::vector<unsi
 
   o = new layouter_c(1, 0, 1, 1);
 
-  new LFl_Box("Pieces", 0, 0, 1, 1);
+  new LFl_Box("Piezas", 0, 0, 1, 1);
 
   for (unsigned int i = 0; i < pieces.size(); i++) {
     char label[20];
@@ -152,9 +152,9 @@ AddMovementDialog::AddMovementDialog(movementCache_c * c, const std::vector<unsi
 
   o = new layouter_c(0, 1, 2, 1);
 
-  (new LFlatButton_c(0, 0, 1, 1, "Done", "", cb_BtnDone_stub, this))->weight(1, 0);
+  (new LFlatButton_c(0, 0, 1, 1, "Listo", "", cb_BtnDone_stub, this))->weight(1, 0);
   (new LFl_Box("", 1, 0, 1, 1))->setMinimumSize(5, 0);
-  (new LFlatButton_c(2, 0, 1, 1, "Cancel", "", cb_BtnCancel_stub, this))->weight(1, 0);
+  (new LFlatButton_c(2, 0, 1, 1, "Cancelar", "", cb_BtnCancel_stub, this))->weight(1, 0);
 
   o->pitch(5);
   o->end();
@@ -483,11 +483,11 @@ movementBrowser_c::movementBrowser_c(problem_c * puzzle, unsigned int solNum) : 
 
   layouter_c * o = new layouter_c(0, 1, 1, 2);
 
-  analyzeNode =       new LFlatButton_c(0, 0, 1, 1, "Analyze", " Analyze this node for possible movement ", cb_NodeAnalyze_stub, this);
-  analyzeNextLevels = new LFlatButton_c(1, 0, 1, 1, "Analyze more", " Analyze multiple levels for movement ", cb_NodeAnalyzeMany_stub, this);
-  addMovement =       new LFlatButton_c(0, 1, 1, 1, "Add Movement", " Add a fixed movement to current node and see what happens ", cb_AddMovement_stub, this);
-  pruneTree =         new LFlatButton_c(1, 1, 1, 1, "Prune Tree", " Remove All Nodes exept the ones that lead to the selected one ", cb_Prune_stub, this);
-  stepBack =            new LFlatButton_c(0, 2, 1, 3, "Step Back", " Jump back to the parent of the selected node in the tree ", cb_StepBack_stub, this);
+  analyzeNode =       new LFlatButton_c(0, 0, 1, 1, "Analizar", "Analizar este nodo para posibles movimientos", cb_NodeAnalyze_stub, this);
+  analyzeNextLevels = new LFlatButton_c(1, 0, 1, 1, "Analizar más", "Analizar varios niveles de movimiento", cb_NodeAnalyzeMany_stub, this);
+  addMovement =       new LFlatButton_c(0, 1, 1, 1, "Añadir movimiento", "Añadir un movimiento fijo al nodo actual y ver qué pasa", cb_AddMovement_stub, this);
+  pruneTree =         new LFlatButton_c(1, 1, 1, 1, "Recortar árbol", "Quitar todos los nodos excepto los que llevan al seleccionado", cb_Prune_stub, this);
+  stepBack =            new LFlatButton_c(0, 2, 1, 3, "Retroceder", "Volver al nodo padre del nodo seleccionado en el árbol", cb_StepBack_stub, this);
 
   stepBack->pitch(2);
   analyzeNode->pitch(2);

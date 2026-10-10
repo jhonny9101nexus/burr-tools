@@ -117,7 +117,7 @@ void stlExport_c::cb_Update3DView(void)
   catch (...)
   {
     view3D->getView()->showNothing();
-    fl_message("The generated mesh is faulty in some way, try to tweak the parameter");
+    fl_message("La malla generada tiene algún fallo; intenta ajustar el parámetro");
     return;
   }
 
@@ -125,7 +125,7 @@ void stlExport_c::cb_Update3DView(void)
   {
     view3D->getView()->showMesh(p);
     char txt[100];
-    snprintf(txt, 99, "Volume: %1.1f cubic-units\n", volume(*p));
+    snprintf(txt, 99, "Volumen: %1.1f unidades cúbicas\n", volume(*p));
     status->copy_label(txt);
   }
   else
@@ -142,7 +142,7 @@ void stlExport_c::cb_FileChooser(void)
   char curFile[500];
   snprintf(curFile, 500, "%s/%s", Pname->value(), Fname->value());
 
-  const char * f = fileChooser("Choose STL File to write", "STL", "*.stl", curFile, true);
+  const char * f = fileChooser("Elige el archivo STL donde escribir", "STL", "*.stl", curFile, true);
 
   if (f)
   {
@@ -197,7 +197,7 @@ stlExport_c::stlExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl_Dou
   if (exportDir.empty())
     exportDir = std::filesystem::path(homedir()).parent_path().string();
 
-  label("Export STL");
+  label("Exportar STL");
 
   stl = std::unique_ptr<stlExporter_c>(p->getGridType()->getStlExporter());
   bt_assert(stl);
@@ -207,8 +207,8 @@ stlExport_c::stlExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl_Dou
   {
     fr = new LFl_Frame(0, 0, 1, 1);
 
-    (new LFl_Box("File name", 0, 0))->stretchLeft();
-    (new LFl_Box("Path", 0, 1))->stretchLeft();
+    (new LFl_Box("Nombre de archivo", 0, 0))->stretchLeft();
+    (new LFl_Box("Ruta", 0, 1))->stretchLeft();
 
     (new LFl_Box(1, 0))->setMinimumSize(5, 0);
     (new LFl_Box(3, 0))->setMinimumSize(5, 0);
@@ -225,7 +225,7 @@ stlExport_c::stlExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl_Dou
     Fl_Button * Btn_Dir = new LFl_Button("...", 3, 0, 2, 2);
     Btn_Dir->callback(cb_stlFileChooser_stub, this);
 
-    Binary = new LFl_Check_Button("Binary STL", 0, 2, 3, 1);
+    Binary = new LFl_Check_Button("STL binario", 0, 2, 3, 1);
     if (stl->getBinaryMode())
       Binary->value(1);
     else
@@ -335,12 +335,12 @@ stlExport_c::stlExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl_Dou
     layouter_c * l = new layouter_c(0, 0, 1, 1);
     l->pitch(5);
 
-    BtnStart = new LFl_Button("Export STL", 0, 0);
+    BtnStart = new LFl_Button("Exportar STL", 0, 0);
     BtnStart->callback(cb_stlExportExport_stub, this);
 
     (new LFl_Box(0, 1))->setMinimumSize(0, 5);
 
-    BtnAbbort = new LFl_Button("Abort", 0, 2);
+    BtnAbbort = new LFl_Button("Abortar", 0, 2);
     BtnAbbort->callback(cb_stlExportAbort_stub, this);
 
     fr->end();
@@ -360,11 +360,11 @@ stlExport_c::stlExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl_Dou
 
     b = mode->addButton();
     b->image(pm.get(ViewModeNormal_xpm));
-    b->tooltip(" Display STL ebject normally ");
+    b->tooltip("Mostrar el objeto STL normalmente");
 
     b = mode->addButton();
     b->image(pm.get(ViewModeInsides_xpm));
-    b->tooltip(" Display the insides of the STL object ");
+    b->tooltip("Mostrar el interior del objeto STL");
 
     mode->callback(cb_stlExportViewUpdate_stub, this);
 
@@ -403,7 +403,7 @@ void stlExport_c::exportSTL(int shape)
   // save dialog, that dialog already asked
   if (fileExists(name) && !fileChooserConfirmedOverwrite(name))
   {
-    if (fl_choice("File exists overwrite?", "Cancel", "Overwrite", 0) == 0)
+    if (fl_choice("¿El archivo ya existe, sobrescribir?", "Cancelar", "Sobrescribir", 0) == 0)
     {
       return;
     }
@@ -418,7 +418,7 @@ void stlExport_c::exportSTL(int shape)
   }
   catch (...)
   {
-    fl_message("The generated mesh is faulty in some way, try to tweak the parameter");
+    fl_message("La malla generada tiene algún fallo; intenta ajustar el parámetro");
   }
 }
 

@@ -303,7 +303,7 @@ void ColorSelector::getText(unsigned int block, char * text) {
     block++;
 
   if (block == 0)
-    snprintf(text, 200, "Default");
+    snprintf(text, 200, "Predeterminado");
   else
     snprintf(text, 200, "C%u", block);
 }

@@ -113,11 +113,11 @@ void groupsEditorTab_c::draw_cell(TableContext context, int r, int c, int x, int
        * the other columns are group columns
        */
       if (c == 0)
-        snprintf(s, 40, "Shape");
+        snprintf(s, 40, "Forma");
       else if (c == 1)
-        snprintf(s, 40, "Min");
+        snprintf(s, 40, "Mín");
       else if (c == 2)
-        snprintf(s, 40, "Max");
+        snprintf(s, 40, "Máx");
       else
         snprintf(s, 40, "Gr %i", c-2);
 
@@ -454,11 +454,11 @@ groupsEditor_c::groupsEditor_c(puzzle_c * p, unsigned int pr) : LFl_Double_Windo
   layouter_c * o = new layouter_c(0, 1, 1, 1);
   o->pitch(SZ_GAP);
 
-  new LFl_Box("Maximum Number of Holes:", 0, 0, 1, 1);
+  new LFl_Box("Número máximo de agujeros:", 0, 0, 1, 1);
   maxHoles = new LFl_Input(1, 0, 1, 1);
   maxHoles->weight(1, 0);
-  maxHoles->tooltip(" Use to define the maximum number of holes alowed in the final solution. This is only"
-                    "useful, when having pieceranges and will be disabled if you don't. ");
+  maxHoles->tooltip("Se usa para definir el número máximo de agujeros permitidos en la solución final. Esto solo es"
+                    "útil cuando hay rangos de piezas, y se desactiva si no los hay.");
   maxHoles->callback(cb_MaxHoles_stub, this);
   if (puzzle->getProblem(problem)->maxHolesDefined()) {
     char tmp[20];
@@ -473,18 +473,18 @@ groupsEditor_c::groupsEditor_c(puzzle_c * p, unsigned int pr) : LFl_Double_Windo
 
   LFl_Button * btn;
 
-  btn = new LFl_Button("Add Group", 0, 0, 1, 1);
+  btn = new LFl_Button("Añadir grupo", 0, 0, 1, 1);
   btn->callback(cb_AddGroup_stub, this);
-  btn->tooltip("Add another group");
+  btn->tooltip("Añadir otro grupo");
   btn->pitch(SZ_GAP);
-  btn = new LFl_Button("Close", 1, 0, 1, 1);
+  btn = new LFl_Button("Cerrar", 1, 0, 1, 1);
   btn->callback(cb_CloseWindow_stub, this);
-  btn->tooltip("Close Window");
+  btn->tooltip("Cerrar ventana");
   btn->pitch(SZ_GAP);
 
   o->end();
 
-  label("Problem Details");
+  label("Detalles del problema");
 
   set_modal();
 

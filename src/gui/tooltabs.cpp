@@ -147,25 +147,25 @@ public:
 
 TransformButtons::TransformButtons(int x, int y, int w, int h, int type) : layouter_c(x, y, w, h) {
 
-  label("Transform");
+  label("Transformar");
 
   (new LFl_Box(0, 0, 1, 1))->weight(1, 1);
   (new LFl_Box(0, 8, 1, 1))->weight(1, 1);
   (new LFl_Box(8, 0, 1, 1))->weight(1, 1);
   (new LFl_Box(8, 8, 1, 1))->weight(1, 1);
 
-  (new LFl_Box("Flip",   1, 1, 1, 1))->labelsize(LABEL_FONT_SIZE);
-  (new LFl_Box("Nudge",  3, 1, 2, 1))->labelsize(LABEL_FONT_SIZE);
-  (new LFl_Box("Rotate", 6, 1, 2, 1))->labelsize(LABEL_FONT_SIZE);
+  (new LFl_Box("Voltear",   1, 1, 1, 1))->labelsize(LABEL_FONT_SIZE);
+  (new LFl_Box("Desplazar",  3, 1, 2, 1))->labelsize(LABEL_FONT_SIZE);
+  (new LFl_Box("Rotar", 6, 1, 2, 1))->labelsize(LABEL_FONT_SIZE);
 
   layouter_c * o = new layouter_c(1, 3, 1, 1);
 
   new TransformPreviewButton(0, 0, 1, 1, pm.get(Transform_Color_Flip_X_xpm)        , pm.get(Transform_Disabled_Flip_X_xpm)        ,
-      " Flip along Y-Z Plane ",              this, 12);
+      "Voltear en el plano Y-Z",              this, 12);
   new TransformPreviewButton(0, 1, 1, 1, pm.get(Transform_Color_Flip_Y_xpm)        , pm.get(Transform_Disabled_Flip_Y_xpm)        ,
-      " Flip along X-Z Plane ",              this, 13);
+      "Voltear en el plano X-Z",              this, 13);
   new TransformPreviewButton(0, 2, 1, 1, pm.get(Transform_Color_Flip_Z_xpm)        , pm.get(Transform_Disabled_Flip_Z_xpm)        ,
-      " Flip along X-Y Plane ",              this, 14);
+      "Voltear en el plano X-Y",              this, 14);
 
   o->end();
 
@@ -173,67 +173,67 @@ TransformButtons::TransformButtons(int x, int y, int w, int h, int type) : layou
 
   if (type == 0) {
     new TransformPreviewButton(0, 0, 1, 1, pm.get(Transform_Color_Nudge_X_Left_xpm)  , pm.get(Transform_Disabled_Nudge_X_Left_xpm)  ,
-        " Shift down along X ",                this,  1);
+        "Desplazar hacia abajo en X",                this,  1);
     new TransformPreviewButton(1, 0, 1, 1, pm.get(Transform_Color_Nudge_X_Right_xpm) , pm.get(Transform_Disabled_Nudge_X_Right_xpm) ,
-        " Shift up along X ",                  this,  0);
+        "Desplazar hacia arriba en X",                  this,  0);
     new TransformPreviewButton(0, 1, 1, 1, pm.get(Transform_Color_Nudge_Y_Left_xpm)  , pm.get(Transform_Disabled_Nudge_Y_Left_xpm)  ,
-        " Shift down along Y ",                this,  3);
+        "Desplazar hacia abajo en Y",                this,  3);
     new TransformPreviewButton(1, 1, 1, 1, pm.get(Transform_Color_Nudge_Y_Right_xpm) , pm.get(Transform_Disabled_Nudge_Y_Right_xpm) ,
-        " Shift up along Y ",                  this,  2);
+        "Desplazar hacia arriba en Y",                  this,  2);
     new TransformPreviewButton(0, 2, 1, 1, pm.get(Transform_Color_Nudge_Z_Left_xpm)  , pm.get(Transform_Disabled_Nudge_Z_Left_xpm)  ,
-        " Shift down along Z ",                this,  5);
+        "Desplazar hacia abajo en Z",                this,  5);
     new TransformPreviewButton(1, 2, 1, 1, pm.get(Transform_Color_Nudge_Z_Right_xpm) , pm.get(Transform_Disabled_Nudge_Z_Right_xpm) ,
-        " Shift up along Z ",                  this,  4);
+        "Desplazar hacia arriba en Z",                  this,  4);
 
   } else if (type == 1) {
 
     new TransformPreviewButton(0, 0, 1, 1, "@7->",
-        " Shift up left along XY plane ",  this,  1);
+        "Desplazar hacia arriba a la izquierda en el plano XY",  this,  1);
     new TransformPreviewButton(1, 0, 1, 1, "@9->",
-        " Shift up right along XY plane ", this,  0);
+        "Desplazar hacia arriba a la derecha en el plano XY", this,  0);
     new TransformPreviewButton(0, 1, 1, 1, "@4->",
-        " Shift left along X ",            this,  3);
+        "Desplazar hacia la izquierda en X",            this,  3);
     new TransformPreviewButton(1, 1, 1, 1, "@6->",
-        " Shift right along X ",           this,  2);
+        "Desplazar hacia la derecha en X",           this,  2);
     new TransformPreviewButton(0, 2, 1, 1, "@1->",
-        " Shift down left XY plane ",      this,  28);
+        "Desplazar hacia abajo a la izquierda en el plano XY",      this,  28);
     new TransformPreviewButton(1, 2, 1, 1, "@3->",
-        " Shift down right XY plane ",     this,  27);
+        "Desplazar hacia abajo a la derecha en el plano XY",     this,  27);
 
     new TransformPreviewButton(0, 3, 1, 1, pm.get(Transform_Color_Nudge_Z_Left_xpm)  , pm.get(Transform_Disabled_Nudge_Z_Left_xpm)  ,
-        " Shift down along Z ",            this,  5);
+        "Desplazar hacia abajo en Z",            this,  5);
     new TransformPreviewButton(1, 3, 1, 1, pm.get(Transform_Color_Nudge_Z_Right_xpm) , pm.get(Transform_Disabled_Nudge_Z_Right_xpm) ,
-        " Shift up along Z ",              this,  4);
+        "Desplazar hacia arriba en Z",              this,  4);
 
   } else if (type == 2) {
 
     new TransformPreviewButton(0, 0, 1, 1, "u @6->",
-        " Shift up along Z and right along X ",this,  0);
+        "Desplazar hacia arriba en Z y hacia la derecha en X",this,  0);
     new TransformPreviewButton(1, 0, 1, 1, "u @8->",
-        " Shift up along Z and up along Y ",   this,  1);
+        "Desplazar hacia arriba en Z y hacia arriba en Y",   this,  1);
     new TransformPreviewButton(2, 0, 1, 1, "u @4->",
-        " Shift up along Z and left along X ", this,  2);
+        "Desplazar hacia arriba en Z y hacia la izquierda en X", this,  2);
     new TransformPreviewButton(3, 0, 1, 1, "u @2->",
-        " Shift up along Z and down along Y ", this,  3);
+        "Desplazar hacia arriba en Z y hacia abajo en Y", this,  3);
 
     new TransformPreviewButton(0, 1, 1, 1, "@9->",
-        " Shift up right along XY plane ",     this,  4);
+        "Desplazar hacia arriba a la derecha en el plano XY",     this,  4);
     new TransformPreviewButton(1, 1, 1, 1, "@7->",
-        " Shift up left along XY plane ",      this,  5);
+        "Desplazar hacia arriba a la izquierda en el plano XY",      this,  5);
     new TransformPreviewButton(2, 1, 1, 1, "@1->",
-        " Shift down left along XY plane ",    this,  27);
+        "Desplazar hacia abajo a la izquierda en el plano XY",    this,  27);
     new TransformPreviewButton(3, 1, 1, 1, "@3->",
-        " Shift down right along XY plane ",   this,  28);
+        "Desplazar hacia abajo a la derecha en el plano XY",   this,  28);
 
 
     new TransformPreviewButton(0, 2, 1, 1, "d @6->",
-        " Shift down along Z and right along X ", this, 29);
+        "Desplazar hacia abajo en Z y hacia la derecha en X", this, 29);
     new TransformPreviewButton(1, 2, 1, 1, "d @8->",
-        " Shift down along Z and up along Y ",    this, 30);
+        "Desplazar hacia abajo en Z y hacia arriba en Y",    this, 30);
     new TransformPreviewButton(2, 2, 1, 1, "d @4->",
-        " Shift down along Z and left along X ",  this, 31);
+        "Desplazar hacia abajo en Z y hacia la izquierda en X",  this, 31);
     new TransformPreviewButton(3, 2, 1, 1, "d @2->",
-        " Shift down along Z and down along Y ",  this, 32);
+        "Desplazar hacia abajo en Z y hacia abajo en Y",  this, 32);
 
   }
 
@@ -244,28 +244,28 @@ TransformButtons::TransformButtons(int x, int y, int w, int h, int type) : layou
   if (type == 1) {
 
     new TransformPreviewButton(6, 0, 2, 1, pm.get(Transform_Color_Rotate_X_Left_xpm) , pm.get(Transform_Disabled_Rotate_X_Left_xpm) ,
-        " Rotate 180° along X-Axis ",     this,  6);
+        "Rotar 180° en el eje X",     this,  6);
     new TransformPreviewButton(6, 1, 2, 1, pm.get(Transform_Color_Rotate_Y_Left_xpm) , pm.get(Transform_Disabled_Rotate_Y_Left_xpm) ,
-        " Rotate 180° along Y-Axis ",     this,  9);
+        "Rotar 180° en el eje Y",     this,  9);
     new TransformPreviewButton(6, 2, 1, 1, pm.get(Transform_Color_Rotate_Z_Left_xpm) , pm.get(Transform_Disabled_Rotate_Z_Left_xpm) ,
-        " Rotate 60° clockwise along Z-Axis ",     this, 10);
+        "Rotar 60° en sentido horario en el eje Z",     this, 10);
     new TransformPreviewButton(7, 2, 1, 1, pm.get(Transform_Color_Rotate_Z_Right_xpm), pm.get(Transform_Disabled_Rotate_Z_Right_xpm),
-        " Rotate 60° anticlockwise along Z-Axis ", this, 11);
+        "Rotar 60° en sentido antihorario en el eje Z", this, 11);
 
   } else {
 
     new TransformPreviewButton(6, 0, 1, 1, pm.get(Transform_Color_Rotate_X_Left_xpm) , pm.get(Transform_Disabled_Rotate_X_Left_xpm) ,
-        " Rotate 90° clockwise along X-Axis ",     this,  6);
+        "Rotar 90° en sentido horario en el eje X",     this,  6);
     new TransformPreviewButton(7, 0, 1, 1, pm.get(Transform_Color_Rotate_X_Right_xpm), pm.get(Transform_Disabled_Rotate_X_Right_xpm),
-        " Rotate 90° anticlockwise along X-Axis ", this,  7);
+        "Rotar 90° en sentido antihorario en el eje X", this,  7);
     new TransformPreviewButton(6, 1, 1, 1, pm.get(Transform_Color_Rotate_Y_Left_xpm) , pm.get(Transform_Disabled_Rotate_Y_Left_xpm) ,
-        " Rotate 90° clockwise along Y-Axis ",     this,  9);
+        "Rotar 90° en sentido horario en el eje Y",     this,  9);
     new TransformPreviewButton(7, 1, 1, 1, pm.get(Transform_Color_Rotate_Y_Right_xpm), pm.get(Transform_Disabled_Rotate_Y_Right_xpm),
-        " Rotate 90° anticlockwise along Y-Axis ", this,  8);
+        "Rotar 90° en sentido antihorario en el eje Y", this,  8);
     new TransformPreviewButton(6, 2, 1, 1, pm.get(Transform_Color_Rotate_Z_Left_xpm) , pm.get(Transform_Disabled_Rotate_Z_Left_xpm) ,
-        " Rotate 90° clockwise along Z-Axis ",     this, 10);
+        "Rotar 90° en sentido horario en el eje Z",     this, 10);
     new TransformPreviewButton(7, 2, 1, 1, pm.get(Transform_Color_Rotate_Z_Right_xpm), pm.get(Transform_Disabled_Rotate_Z_Right_xpm),
-        " Rotate 90° anticlockwise along Z-Axis ", this, 11);
+        "Rotar 90° en sentido antihorario en el eje Z", this, 11);
   }
 
   o->end();
@@ -283,36 +283,36 @@ static void cb_ToolsButtons_stub(Fl_Widget* o, long v) { static_cast<ToolsButton
 
 ToolsButtons::ToolsButtons(int x, int y, int w, int h) : layouter_c(x, y, w, h) {
 
-  label("Tools");
+  label("Herramientas");
 
   (new LFl_Box(0, 0, 1, 1))->weight(1, 1);
   (new LFl_Box(0, 8, 1, 1))->weight(1, 1);
   (new LFl_Box(9, 0, 1, 1))->weight(1, 1);
   (new LFl_Box(9, 8, 1, 1))->weight(1, 1);
 
-  (new LFl_Box("Constrain", 3, 1, 2, 1))->labelsize(LABEL_FONT_SIZE);
+  (new LFl_Box("Restringir", 3, 1, 2, 1))->labelsize(LABEL_FONT_SIZE);
 
   new LFlatButton_c(3, 3, 1, 1, pm.get(InOut_Color_Fixed_In_xpm), pm.get(InOut_Disabled_Fixed_In_xpm),
-      " Make inside fixed ", cb_ToolsButtons_stub, 16);
+      "Hacer fijo el interior", cb_ToolsButtons_stub, 16);
   new LFlatButton_c(3, 5, 1, 1, pm.get(InOut_Color_Variable_In_xpm), pm.get(InOut_Disabled_Variable_In_xpm),
-      " Make inside variable ", cb_ToolsButtons_stub, 18);
+      "Hacer variable el interior", cb_ToolsButtons_stub, 18);
   new LFlatButton_c(3, 7, 1, 1, pm.get(InOut_Color_RemoveColor_In_xpm), pm.get(InOut_Disabled_RemoveColor_In_xpm),
-      " Remove Colours from inside voxels ", cb_ToolsButtons_stub, 20);
+      "Quitar colores de los vóxeles interiores", cb_ToolsButtons_stub, 20);
 
   new LFlatButton_c(4, 3, 1, 1, pm.get(InOut_Color_Fixed_Out_xpm), pm.get(InOut_Disabled_Fixed_Out_xpm),
-      " Make outside fixed ", cb_ToolsButtons_stub, 17);
+      "Hacer fijo el exterior", cb_ToolsButtons_stub, 17);
   new LFlatButton_c(4, 5, 1, 1, pm.get(InOut_Color_Variable_Out_xpm), pm.get(InOut_Disabled_Variable_Out_xpm),
-      " Make outside variable ", cb_ToolsButtons_stub, 19);
+      "Hacer variable el exterior", cb_ToolsButtons_stub, 19);
   new LFlatButton_c(4, 7, 1, 1, pm.get(InOut_Color_RemoveColor_Out_xpm), pm.get(InOut_Disabled_RemoveColor_Out_xpm),
-      " Remove Colours from outside voxels ", cb_ToolsButtons_stub, 21);
+      "Quitar colores de los vóxeles exteriores", cb_ToolsButtons_stub, 21);
 
   (new LFl_Box(0, 2, 1, 1))->setMinimumSize(0, 5);
   (new LFl_Box(0, 4, 1, 1))->setMinimumSize(0, 5);
   (new LFl_Box(0, 6, 1, 1))->setMinimumSize(0, 5);
 
   (new LFl_Box(7, 3, 1, 1))->setMinimumSize(5, 0);
-  new LFlatButton_c(8, 3, 1, 1, "Fill Holes", "", cb_ToolsButtons_stub, 40);
-  new LFlatButton_c(8, 5, 1, 1, "Grid Scale", "", cb_ToolsButtons_stub, 41);
+  new LFlatButton_c(8, 3, 1, 1, "Rellenar agujeros", "", cb_ToolsButtons_stub, 40);
+  new LFlatButton_c(8, 5, 1, 1, "Escala de la rejilla", "", cb_ToolsButtons_stub, 41);
 
   end();
 }
@@ -325,25 +325,25 @@ SizeButtons::SizeButtons(int x, int y, int w, int h, bool addScale) : layouter_c
   (new LFl_Box(0, 0, 1, 1))->weight(1, 1);
   (new LFl_Box(0, 8, 1, 1))->weight(1, 1);
 
-  (new LFl_Box("Grid", 0, 1, 1, 1))->labelsize(LABEL_FONT_SIZE);
+  (new LFl_Box("Rejilla", 0, 1, 1, 1))->labelsize(LABEL_FONT_SIZE);
 
   new LFlatButton_c(0, 3, 1, 1, pm.get(Grid_Color_Minimize_xpm), pm.get(Grid_Disabled_Minimize_xpm),
-      " Minimize size of grid ", cb_SizeButtons_stub, 15);
+      "Minimizar el tamaño de la rejilla", cb_SizeButtons_stub, 15);
   new LFlatButton_c(0, 5, 1, 1, pm.get(Grid_Color_Center_xpm), pm.get(Grid_Disabled_Center_xpm),
-      " Centre shape inside the grid ", cb_SizeButtons_stub, 25);
+      "Centrar la forma dentro de la rejilla", cb_SizeButtons_stub, 25);
   new LFlatButton_c(0, 7, 1, 1, pm.get(Grid_Color_Origin_xpm), pm.get(Grid_Disabled_Origin_xpm),
-      " Move shape to origin of grid ", cb_SizeButtons_stub, 24);
+      "Mover la forma al origen de la rejilla", cb_SizeButtons_stub, 24);
 
 
   if (addScale) {
-    (new LFl_Box("Shape", 2, 1, 1, 1))->labelsize(LABEL_FONT_SIZE);
+    (new LFl_Box("Forma", 2, 1, 1, 1))->labelsize(LABEL_FONT_SIZE);
 
     new LFlatButton_c(2, 3, 1, 1, pm.get(Rescale_Color_X1_xpm), pm.get(Rescale_Disabled_X1_xpm),
-        " Try to minimize size of shape ", cb_SizeButtons_stub, 26);
+        "Intentar minimizar el tamaño de la forma", cb_SizeButtons_stub, 26);
     new LFlatButton_c(2, 5, 1, 1, pm.get(Rescale_Color_X2_xpm), pm.get(Rescale_Disabled_X2_xpm),
-        " Double size of shape ", cb_SizeButtons_stub, 22);
+        "Duplicar el tamaño de la forma", cb_SizeButtons_stub, 22);
     new LFlatButton_c(2, 7, 1, 1, pm.get(Rescale_Color_X3_xpm), pm.get(Rescale_Disabled_X3_xpm),
-        " Triple size of shape ", cb_SizeButtons_stub, 23);
+        "Triplicar el tamaño de la forma", cb_SizeButtons_stub, 23);
   }
 
   (new LFl_Box(0, 4, 1, 1))->setMinimumSize(0, 5);
@@ -440,7 +440,7 @@ void ChangeSize::calcNewSizes(int ox, int oy, int oz, int *nx, int *ny, int *nz)
 
 ChangeSize::ChangeSize(int x, int y, int w, int h) : layouter_c(x, y, w, h) {
 
-  tooltip(" Change size of space ");
+  tooltip("Cambiar el tamaño del espacio");
 
   (new LFl_Box(0, 2, 1, 1))->setMinimumSize(0, 5);
   (new LFl_Box(0, 4, 1, 1))->setMinimumSize(0, 5);
@@ -495,9 +495,9 @@ ChangeSize::ChangeSize(int x, int y, int w, int h) : layouter_c(x, y, w, h) {
   ConnectY = new LFl_Check_Button(" ", 6, 3, 1, 1);
   ConnectZ = new LFl_Check_Button(" ", 6, 5, 1, 1);
 
-  ConnectX->tooltip(" Link the sizes together so that a change will be done to the other sizes as well ");
-  ConnectY->tooltip(" Link the sizes together so that a change will be done to the other sizes as well ");
-  ConnectZ->tooltip(" Link the sizes together so that a change will be done to the other sizes as well ");
+  ConnectX->tooltip("Vincular los tamaños para que un cambio también afecte a los demás");
+  ConnectY->tooltip("Vincular los tamaños para que un cambio también afecte a los demás");
+  ConnectZ->tooltip("Vincular los tamaños para que un cambio también afecte a los demás");
 
   ConnectX->clear_visible_focus();
   ConnectY->clear_visible_focus();
@@ -586,7 +586,7 @@ ToolTab_0::ToolTab_0(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
 
   {
     layouter_c * o = new layouter_c(0, 1, 1, 1);
-    o->label("Size");
+    o->label("Tamaño");
     o->pitch(5);
 
     layouter_c *o2 = new layouter_c(0, 0, 1, 1);
@@ -594,8 +594,8 @@ ToolTab_0::ToolTab_0(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
     changeSize = new ChangeSize(0, 1, 1, 1);
     changeSize->callback(cb_ToolTab0Size_stub);
 
-    toAll = new LFl_Check_Button("Apply to All Shapes", 0, 0, 1, 1);
-    toAll->tooltip(" If this is active, all operations (including transformations and constrains are done to all shapes ");
+    toAll = new LFl_Check_Button("Aplicar a todas las formas", 0, 0, 1, 1);
+    toAll->tooltip("Si esto está activo, todas las operaciones (incluyendo transformaciones y restricciones) se aplican a todas las formas");
     toAll->clear_visible_focus();
     toAll->stretchHCenter();
 
@@ -763,7 +763,7 @@ ToolTab_1::ToolTab_1(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
 
   {
     layouter_c * o = new layouter_c(0, 1, 1, 1);
-    o->label("Size");
+    o->label("Tamaño");
     o->pitch(5);
 
     layouter_c *o2 = new layouter_c(0, 0, 1, 1);
@@ -771,8 +771,8 @@ ToolTab_1::ToolTab_1(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
     changeSize = new ChangeSize(0, 1, 1, 1);
     changeSize->callback(cb_ToolTab1Size_stub);
 
-    toAll = new LFl_Check_Button("Apply to All Shapes", 0, 0, 1, 1);
-    toAll->tooltip(" If this is active, all operations (including transformations and constrains are done to all shapes ");
+    toAll = new LFl_Check_Button("Aplicar a todas las formas", 0, 0, 1, 1);
+    toAll->tooltip("Si esto está activo, todas las operaciones (incluyendo transformaciones y restricciones) se aplican a todas las formas");
     toAll->clear_visible_focus();
     toAll->stretchHCenter();
 
@@ -894,7 +894,7 @@ void ToolTab_1::cb_transform(long task) {
 
     if (task == 26) {
 
-      fl_message("Sorry this is not yet implemented!");
+      fl_message("Esto todavía no está implementado, lo siento!");
       return;
 
     }
@@ -931,7 +931,7 @@ ToolTab_2::ToolTab_2(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
 
   {
     layouter_c * o = new layouter_c(0, 1, 1, 1);
-    o->label("Size");
+    o->label("Tamaño");
     o->pitch(5);
 
     layouter_c *o2 = new layouter_c(0, 0, 1, 1);
@@ -939,8 +939,8 @@ ToolTab_2::ToolTab_2(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
     changeSize = new ChangeSize(0, 1, 1, 1);
     changeSize->callback(cb_ToolTab2Size_stub);
 
-    toAll = new LFl_Check_Button("Apply to All Shapes", 0, 0, 1, 1);
-    toAll->tooltip(" If this is active, all operations (including transformations and constrains are done to all shapes ");
+    toAll = new LFl_Check_Button("Aplicar a todas las formas", 0, 0, 1, 1);
+    toAll->tooltip("Si esto está activo, todas las operaciones (incluyendo transformaciones y restricciones) se aplican a todas las formas");
     toAll->clear_visible_focus();
     toAll->stretchHCenter();
 
@@ -1103,7 +1103,7 @@ ToolTab_3::ToolTab_3(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
 
   {
     layouter_c * o = new layouter_c(0, 1, 1, 1);
-    o->label("Size");
+    o->label("Tamaño");
     o->pitch(5);
 
     layouter_c *o2 = new layouter_c(0, 0, 1, 1);
@@ -1111,8 +1111,8 @@ ToolTab_3::ToolTab_3(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
     changeSize = new ChangeSize(0, 1, 1, 1);
     changeSize->callback(cb_ToolTab3Size_stub);
 
-    toAll = new LFl_Check_Button("Apply to All Shapes", 0, 0, 1, 1);
-    toAll->tooltip(" If this is active, all operations (including transformations and constrains are done to all shapes ");
+    toAll = new LFl_Check_Button("Aplicar a todas las formas", 0, 0, 1, 1);
+    toAll->tooltip("Si esto está activo, todas las operaciones (incluyendo transformaciones y restricciones) se aplican a todas las formas");
     toAll->clear_visible_focus();
     toAll->stretchHCenter();
 
@@ -1201,7 +1201,7 @@ void ToolTab_3::cb_transform(long task) {
   if (puzzle && shape < puzzle->getNumberOfShapes()) {
 
     if (task == 26) {
-      fl_message("Sorry minimizing is not (yet) implemented for the rhombic grid!");
+      fl_message("Minimizar todavía no está implementado para la rejilla rómbica, lo siento!");
       return;
     }
 
@@ -1251,7 +1251,7 @@ ToolTab_4::ToolTab_4(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
 
   {
     layouter_c * o = new layouter_c(0, 1, 1, 1);
-    o->label("Size");
+    o->label("Tamaño");
     o->pitch(3);
 
     layouter_c *o2 = new layouter_c(0, 0, 1, 1);
@@ -1259,8 +1259,8 @@ ToolTab_4::ToolTab_4(int x, int y, int w, int h) : ToolTab(x, y, w, h) {
     changeSize = new ChangeSize(0, 1, 1, 1);
     changeSize->callback(cb_ToolTab4Size_stub);
 
-    toAll = new LFl_Check_Button("Apply to All Shapes", 0, 0, 1, 1);
-    toAll->tooltip(" If this is active, all operations (including transformations and constrains are done to all shapes ");
+    toAll = new LFl_Check_Button("Aplicar a todas las formas", 0, 0, 1, 1);
+    toAll->tooltip("Si esto está activo, todas las operaciones (incluyendo transformaciones y restricciones) se aplican a todas las formas");
     toAll->clear_visible_focus();
     toAll->stretchHCenter();
 
@@ -1348,7 +1348,7 @@ void ToolTab_4::cb_transform(long task) {
   if (puzzle && shape < puzzle->getNumberOfShapes()) {
 
     if (task == 26) {
-      fl_message("Sorry minimizing is not (yet) implemented for the rhombic grid!");
+      fl_message("Minimizar todavía no está implementado para la rejilla rómbica, lo siento!");
       return;
     }
 

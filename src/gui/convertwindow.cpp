@@ -73,7 +73,7 @@ convertWindow_c::convertWindow_c(gridType_c::gridType srcType) : LFl_Double_Wind
   }
 
   if (!found) {
-    new LFl_Box("There are no grids that this puzzle can be converted to, sorry", 0, yPos, 1, 1);
+    new LFl_Box("No hay rejillas a las que se pueda convertir este puzzle, lo siento", 0, yPos, 1, 1);
     yPos++;
   }
 
@@ -81,13 +81,13 @@ convertWindow_c::convertWindow_c(gridType_c::gridType srcType) : LFl_Double_Wind
 
   if (found)
   {
-    new LFl_Box("Please Select Target grid", 0, 0, 1, 1);
+    new LFl_Box("Selecciona la rejilla de destino", 0, 0, 1, 1);
 
     o = new layouter_c(0, 2, 1, 1);
     o->pitch(5);
 
-    (new LFl_Button("Continue", 0, 0, 1, 1))->callback(cb_WindowButton_stub2, this);
-    (new LFl_Button("Abort", 1, 0, 1, 1))->callback(cb_WindowButton_stub, this);
+    (new LFl_Button("Continuar", 0, 0, 1, 1))->callback(cb_WindowButton_stub2, this);
+    (new LFl_Button("Abortar", 1, 0, 1, 1))->callback(cb_WindowButton_stub, this);
 
     o->end();
   }

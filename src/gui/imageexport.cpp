@@ -217,7 +217,7 @@ bool imageExport_c::PreDraw(void) {
   switch(state) {
     case 0:
 
-      snprintf(statText, 50, "create Preview image %u / %zu", im, images.size());
+      snprintf(statText, 50, "crear imagen de vista previa %u / %zu", im, images.size());
       status->label(statText);
 
       images[im]->preparePreviewImage();
@@ -228,7 +228,7 @@ bool imageExport_c::PreDraw(void) {
 
       if (!images[im]->imageStarted()) {
 
-        snprintf(statText, 50, "create image %u / %zu", im, images.size());
+        snprintf(statText, 50, "crear imagen %u / %zu", im, images.size());
         status->label(statText);
 
         unsigned int w = (unsigned int)(imgHeight * images[im]->ratio() + 0.9);
@@ -257,7 +257,7 @@ void imageExport_c::nextImage(bool finish) {
 
   if (i) {
 
-    snprintf(statText, 20, "save page %u", curPage);
+    snprintf(statText, 20, "guardar página %u", curPage);
     status->label(statText);
 
     char name[1000];
@@ -303,14 +303,14 @@ void imageExport_c::PostDraw(void) {
 
     state = 3;
     view3D->getView()->setCallback();
-    status->label("Failed");
+    status->label("Fallido");
     working = false;
 
     const std::string path = failedPath;
     failedPath.clear();     // so the alert is shown once, not on every draw
 
-    fl_alert("Could not write the image to\n%s\n\n"
-             "Check that the path exists and is writable.", path.c_str());
+    fl_alert("No se pudo escribir la imagen en\n%s\n\n"
+             "Comprueba que la ruta existe y tiene permiso de escritura.", path.c_str());
 
     return;
   }
@@ -424,7 +424,7 @@ void imageExport_c::PostDraw(void) {
           // remove callbacks
           view3D->getView()->setCallback();
 
-          status->label("Done");
+          status->label("Listo");
 
           working = false;
         }
@@ -627,15 +627,15 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
   if (exportDir.empty())
     exportDir = std::filesystem::path(homedir()).parent_path().string();
 
-  label("Export Images");
+  label("Exportar imágenes");
 
   LFl_Frame *fr;
 
   {
     fr = new LFl_Frame(0, 0, 1, 2);
 
-    BgWhite = new LFl_Radio_Button("White Background", 0, 0);
-    BgTransp = new LFl_Radio_Button("Transparent Background", 0, 1);
+    BgWhite = new LFl_Radio_Button("Fondo blanco", 0, 0);
+    BgTransp = new LFl_Radio_Button("Fondo transparente", 0, 1);
     BgWhite->value(1);
     (new LFl_Box(0, 2))->weight(0, 1);
     fr->end();
@@ -645,18 +645,18 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
     // the group that defines the super sampling
     fr = new LFl_Frame(0, 2);
 
-    AA1 = new LFl_Radio_Button("No Antialiasing", 0, 0);
-    AA2 = new LFl_Radio_Button("2x2 Supersampling", 0, 1);
-    AA3 = new LFl_Radio_Button("3x3 Supersampling", 0, 2);
+    AA1 = new LFl_Radio_Button("Sin antialiasing", 0, 0);
+    AA2 = new LFl_Radio_Button("Supermuestreo 2x2", 0, 1);
+    AA3 = new LFl_Radio_Button("Supermuestreo 3x3", 0, 2);
     AA3->value(1);
-    AA4 = new LFl_Radio_Button("4x4 Supersampling", 0, 3);
-    AA5 = new LFl_Radio_Button("5x5 Supersampling", 0, 4);
+    AA4 = new LFl_Radio_Button("Supermuestreo 4x4", 0, 3);
+    AA5 = new LFl_Radio_Button("Supermuestreo 5x5", 0, 4);
 
     {
       layouter_c * l = new layouter_c(0, 5, 1, 2);
 
-      ColPiece = new LFl_Radio_Button("Use piece colours", 0, 5);
-      ColConst = new LFl_Radio_Button("Use colour constraint colours", 0, 6);
+      ColPiece = new LFl_Radio_Button("Usar los colores de las piezas", 0, 5);
+      ColConst = new LFl_Radio_Button("Usar los colores de las restricciones de color", 0, 6);
 
       ColPiece->value(1);
 
@@ -666,7 +666,7 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
       l->end();
     }
 
-    DimStatic = new LFl_Check_Button("Dim static pieces", 0, 7);
+    DimStatic = new LFl_Check_Button("Atenuar las piezas estáticas", 0, 7);
     (new LFl_Box(0, 8))->weight(0, 1);
     fr->end();
   }
@@ -677,30 +677,30 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
 
     int y = 0;
 
-    SzA4Port = new LFl_Radio_Button("A4 Portrait", 0, y++, 5, 1);
+    SzA4Port = new LFl_Radio_Button("A4 vertical", 0, y++, 5, 1);
     SzA4Port->callback(cb_ImageExportSzUpdate_stub, this);
 
-    SzA4Land = new LFl_Radio_Button("A4 Landscape", 0, y++, 5, 1);
+    SzA4Land = new LFl_Radio_Button("A4 horizontal", 0, y++, 5, 1);
     SzA4Land->callback(cb_ImageExportSzUpdate_stub, this);
 
-    SzLetterPort = new LFl_Radio_Button("Letter Portrait", 0, y++, 5, 1);
+    SzLetterPort = new LFl_Radio_Button("Carta vertical", 0, y++, 5, 1);
     SzLetterPort->callback(cb_ImageExportSzUpdate_stub, this);
 
-    SzLetterLand = new LFl_Radio_Button("Letter Landscape", 0, y++, 5, 1);
+    SzLetterLand = new LFl_Radio_Button("Carta horizontal", 0, y++, 5, 1);
     SzLetterLand->callback(cb_ImageExportSzUpdate_stub, this);
 
     SzManual = new LFl_Radio_Button("manual", 0, y++, 5, 1);
     SzManual->value(1);
     SzManual->callback(cb_ImageExportSzUpdate_stub, this);
 
-    (new LFl_Box("Size X", 0, y))->stretchRight();
+    (new LFl_Box("Tamaño X", 0, y))->stretchRight();
     SzX = new LFl_Input(2, y);
     SzX->callback(cb_ImageExportSzUpdate_stub, this);
     (new LFl_Box("mm", 4, y))->stretchLeft();
     (new LFl_Box(3, y))->setMinimumSize(5, 0);
     (new LFl_Box(1, y++))->setMinimumSize(5, 0);
 
-    (new LFl_Box("Size Y", 0, y))->stretchRight();
+    (new LFl_Box("Tamaño Y", 0, y))->stretchRight();
     SzY = new LFl_Input(2, y);
     SzY->callback(cb_ImageExportSzUpdate_stub, this);
     (new LFl_Box("mm", 4, y++))->stretchLeft();
@@ -710,12 +710,12 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
     SzDPI->value("300");
     SzDPI->callback(cb_ImageExportSzUpdate_stub, this);
 
-    (new LFl_Box("Pixel X", 0, y))->stretchRight();
+    (new LFl_Box("Píxel X", 0, y))->stretchRight();
     SizePixelX = new LFl_Int_Input(2, y++);
     SizePixelX->value("300");
     SizePixelX->setMinimumSize(50, 0);
 
-    (new LFl_Box("Pixel Y", 0, y))->stretchRight();
+    (new LFl_Box("Píxel Y", 0, y))->stretchRight();
     SizePixelY = new LFl_Int_Input(2, y++);
     SizePixelY->value("300");
 
@@ -727,10 +727,10 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
   {
     fr = new LFl_Frame(0, 3, 2, 1);
 
-    (new LFl_Box("File name", 0, 0))->stretchLeft();
-    (new LFl_Box("Path", 0, 1))->stretchLeft();
-    (new LFl_Box("Number of files", 0, 2, 3, 1))->stretchLeft();
-    (new LFl_Box("Number of images", 0, 3, 3, 1))->stretchLeft();
+    (new LFl_Box("Nombre de archivo", 0, 0))->stretchLeft();
+    (new LFl_Box("Ruta", 0, 1))->stretchLeft();
+    (new LFl_Box("Número de archivos", 0, 2, 3, 1))->stretchLeft();
+    (new LFl_Box("Número de imágenes", 0, 3, 3, 1))->stretchLeft();
 
     (new LFl_Box(1, 0))->setMinimumSize(5, 0);
     (new LFl_Box(3, 0))->setMinimumSize(5, 0);
@@ -753,11 +753,11 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
 
     fr = new LFl_Frame(0, 4, 2, 1);
 
-    ExpShape = new LFl_Radio_Button("Export Shape", 0, 0);
-    ExpProblem = new LFl_Radio_Button("Export Problem", 0, 1);
-    ExpAssembly = new LFl_Radio_Button("Export Assembly", 0, 2);
-    ExpSolution = new LFl_Radio_Button("Export Solution (Assembly)", 0, 3);
-    ExpSolutionDisassm = new LFl_Radio_Button("Export Solution (Disassembly)", 0, 4);
+    ExpShape = new LFl_Radio_Button("Exportar forma", 0, 0);
+    ExpProblem = new LFl_Radio_Button("Exportar problema", 0, 1);
+    ExpAssembly = new LFl_Radio_Button("Exportar ensamblaje", 0, 2);
+    ExpSolution = new LFl_Radio_Button("Exportar solución (ensamblaje)", 0, 3);
+    ExpSolutionDisassm = new LFl_Radio_Button("Exportar solución (desensamblaje)", 0, 4);
     ExpSolution->setonly();
 
     (new LFl_Box(0, 5))->weight(0, 1);
@@ -796,15 +796,15 @@ imageExport_c::imageExport_c(puzzle_c * p, const std::string & puzzleFile) : LFl
 
     status = new LFl_Box();
     status->weight(1, 0);
-    status->label("Test");
+    status->label("Prueba");
     status->pitch(7);
     status->align(FL_ALIGN_LEFT | FL_ALIGN_INSIDE);
 
-    BtnStart = new LFl_Button("Export image(s)", 1, 0);
+    BtnStart = new LFl_Button("Exportar imagen(es)", 1, 0);
     BtnStart->pitch(7);
     BtnStart->callback(cb_ImageExportExport_stub, this);
 
-    BtnAbbort = new LFl_Button("Abort", 2, 0);
+    BtnAbbort = new LFl_Button("Abortar", 2, 0);
     BtnAbbort->pitch(7);
     BtnAbbort->callback(cb_ImageExportAbort_stub, this);
 

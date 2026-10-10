@@ -133,10 +133,10 @@ std::string platform::windowTitle(const char * filename) {
   /* macOS titles a document window with the document's name and nothing
    * else; the application name belongs in the menu bar.
    */
-  return untitled ? std::string("Untitled") : std::string(baseName(filename));
+  return untitled ? std::string("Sin título") : std::string(baseName(filename));
 #else
-  return untitled ? std::string("BurrTools - Untitled")
-                  : std::string("BurrTools - ") + filename;
+  return untitled ? std::string("BurrTools - Sin título")
+                  : std::string("BurrTools -") + filename;
 #endif
 }
 

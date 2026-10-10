@@ -125,7 +125,7 @@ void stlExportSolution_c::cb_Abort(void) { hide(); }
 void stlExportSolution_c::cb_FileChooser(void)
 {
   const char * f = fl_file_chooser(
-      "Choose output folder (navigate into it and pick any file)",
+      "Elige la carpeta de salida (entra en ella y selecciona cualquier archivo)",
       "", Pname->value(), 0);
 
   if (f) {
@@ -184,7 +184,7 @@ void stlExportSolution_c::cb_Export(void)
   }
 
   if (entries.empty()) {
-    fl_message("No piece shapes to export for this solution.");
+    fl_message("No hay formas de pieza para exportar en esta solución.");
     return;
   }
 
@@ -196,7 +196,7 @@ void stlExportSolution_c::cb_Export(void)
   }
   if (existing > 0) {
     if (fl_choice("%d output file(s) already exist. Overwrite?",
-                  "Cancel", "Overwrite", 0, existing) == 0)
+                  "Cancelar", "Sobrescribir", 0, existing) == 0)
       return;
   }
 
@@ -209,19 +209,19 @@ void stlExportSolution_c::cb_Export(void)
       stl->write(entries[i].fname.c_str(), *v);
       exported++;
     } catch (stlException_c e) {
-      fl_message("Error exporting %s:\n%s", entries[i].fname.c_str(), e.comment);
+      fl_message("Error al exportar %s:\n%s", entries[i].fname.c_str(), e.comment);
       errors++;
     } catch (...) {
-      fl_message("Unexpected error exporting %s", entries[i].fname.c_str());
+      fl_message("Error inesperado al exportar %s", entries[i].fname.c_str());
       errors++;
     }
   }
 
   char msg[300];
   if (errors == 0)
-    snprintf(msg, 300, "Done — exported %d piece type(s).", exported);
+    snprintf(msg, 300, "Listo — se exportaron %d tipo(s) de pieza.", exported);
   else
-    snprintf(msg, 300, "Done — exported %d piece type(s), %d error(s).", exported, errors);
+    snprintf(msg, 300, "Listo — se exportaron %d tipo(s) de pieza, %d error(es).", exported, errors);
   status->copy_label(msg);
 }
 
@@ -232,7 +232,7 @@ stlExportSolution_c::stlExportSolution_c(puzzle_c * p,
                                          unsigned int solIdx)
   : LFl_Double_Window(false), puzzle(p), prob(probIdx), sol(solIdx)
 {
-  label("Export Solution to STL");
+  label("Exportar solución a STL");
 
   stl = std::unique_ptr<stlExporter_c>(p->getGridType()->getStlExporter());
   bt_assert(stl);
@@ -286,7 +286,7 @@ stlExportSolution_c::stlExportSolution_c(puzzle_c * p,
   {
     LFl_Frame * fr = new LFl_Frame(0, 1, 1, 1);
 
-    (new LFl_Box("Output folder", 0, 0))->stretchLeft();
+    (new LFl_Box("Carpeta de salida", 0, 0))->stretchLeft();
     (new LFl_Box(1, 0))->setMinimumSize(5, 0);
 
     Pname = new LFl_Input(2, 0, 1, 1);
@@ -296,7 +296,7 @@ stlExportSolution_c::stlExportSolution_c(puzzle_c * p,
 
     (new LFl_Button("...", 3, 0, 1, 1))->callback(cb_FileChooser_stub, this);
 
-    Binary = new LFl_Check_Button("Binary STL", 0, 1, 4, 1);
+    Binary = new LFl_Check_Button("STL binario", 0, 1, 4, 1);
     Binary->value(stl->getBinaryMode() ? 1 : 0);
 
     fr->end();
@@ -309,7 +309,7 @@ stlExportSolution_c::stlExportSolution_c(puzzle_c * p,
     std::string info;
     char line[300];
 
-    snprintf(line, 300, "Pieces placed in solution %u:\n", sol + 1);
+    snprintf(line, 300, "Piezas colocadas en la solución %u:\n", sol + 1);
     info += line;
 
     /* use actual assembly placements rather than the problem's max counts */
@@ -333,7 +333,7 @@ stlExportSolution_c::stlExportSolution_c(puzzle_c * p,
       total += count;
     }
 
-    snprintf(line, 300, "Total instances: %u", total);
+    snprintf(line, 300, "Total de instancias: %u", total);
     info += line;
 
     LFl_Box * infoBox = new LFl_Box("", 0, 2, 1, 1);
@@ -360,13 +360,13 @@ stlExportSolution_c::stlExportSolution_c(puzzle_c * p,
     layouter_c * o = new layouter_c(0, 4);
     o->pitch(5);
 
-    LFl_Button * btn = new LFl_Button("Export All", 0, 0, 1, 1);
+    LFl_Button * btn = new LFl_Button("Exportar todo", 0, 0, 1, 1);
     btn->callback(cb_Export_stub, this);
     btn->weight(1, 0);
 
     (new LFl_Box(1, 0))->setMinimumSize(5, 0);
 
-    btn = new LFl_Button("Close", 2, 0, 1, 1);
+    btn = new LFl_Button("Cerrar", 2, 0, 1, 1);
     btn->callback(cb_Abort_stub, this);
     btn->weight(1, 0);
 
